@@ -1,0 +1,215 @@
+/* Global Styles */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+h1 {
+    color: #00629b;
+    letter-spacing: .5px;
+    font-size: 39px;
+}
+h2, h3 {
+  color: #444;
+  font-weight: lighter;
+}
+h3 {
+  font-size: 1.3rem;
+}
+body {
+  padding: .5rem;
+  max-width: 1000px;
+  margin: auto;
+}
+@media (min-width: 600px) {
+  body {
+    padding: 2rem;
+  }
+}
+body, input[text] {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}
+a {
+  cursor: pointer;
+}
+
+
+/* Navigation link styles */
+nav a {
+  /* padding: 5px 10px;*/
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  padding: 1em;
+  margin-bottom: 1em;
+  color: #016690;
+  /* background-color: #e8e8e8;
+  color: #3d3d3d;
+  border-radius: 4px; */
+}
+
+nav a:hover {
+  color:  #00629b;
+}
+nav a.active {
+  /*background-color: black;
+  color: white;*/
+  color: #00629b;
+  padding-left: 0!important;
+}
+a{
+  font-size: 85%;
+  color: #337ab7;
+}
+hr {
+  margin: 1.5rem 0;
+}
+input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .5rem;
+}
+.message-format{
+  text-align: center;
+  margin-top: 180px;
+}
+
+.btn-first-message{
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: Open Sans,Tahoma,Geneva,sans-serif;
+  box-sizing: border-box;
+    min-height: 2.1875rem;
+    *height: 1.5rem;
+    border: 0.0625rem;
+    color: #fff;
+    *min-height: 0px;
+    background-color: #227ab9;
+    border-color: transparent;
+    display: inline-block;
+    padding: 6px 12px;
+    *padding: 0px 12px;
+    font-weight: 700;
+    line-height: 16px;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Open Sans, Tahoma, Geneva, sans-serif;
+    text-align: center;
+    min-height: 35px;
+    *min-height: 0px;
+    *height: 24px;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-color: transparent;
+}
+p{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 130%;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.next_btn{
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: Open Sans,Tahoma,Geneva,sans-serif;
+  box-sizing: border-box;
+    min-height: 2.1875rem;
+    *height: 1.5rem;
+    border: 0.0625rem;
+    color: #fff;
+    *min-height: 0px;
+    background-color: #227ab9;
+    border-color: transparent;
+    display: inline-block;
+    padding: 6px 12px;
+    *padding: 0px 12px;
+    font-weight: 700;
+    line-height: 16px;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: Open Sans, Tahoma, Geneva, sans-serif;
+    text-align: center;
+    min-height: 35px;
+    *min-height: 0px;
+    *height: 24px;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background-color: #227AB9;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-color: transparent;
+}
+/*.next_btn :hover {
+  text-decoration: underline;
+}*/
+
+.next_btn_wrap{
+  text-align: center;
+}
+button:hover {
+  color: #00629b;
+}
+.next_btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+
+input[type="text"]{
+  margin-bottom: 25px;
+  display:inline-flex;
+  *display: inline;     /* for IE7*/
+  zoom:1;              /* for IE7*/
+  vertical-align:middle;
+  margin-left:20px;
+  width: fit-content;
+  font-size: xxx-large;
+}
+
+.form-match label {
+  display:inline-block;
+  *display: inline;     /* for IE7*/
+  zoom:1;              /* for IE7*/
+  padding-top: 5px;
+  text-align: right;
+  font-size: xxx-large;
+  margin-left: 100px;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #227ab9 !important;
+  border-radius: 4px !important;
+  border-color: transparent !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+  font-family: Open Sans,Tahoma,Geneva,sans-serif !important;
+}
+.swal2-styled.swal2-confirm :hover {
+  color:  #00629b !important;
+}
+
