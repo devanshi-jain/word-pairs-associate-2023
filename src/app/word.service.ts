@@ -21,7 +21,11 @@ export class WordService {
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'family', listonesec: 'marriage' }
+        { listone: 'family', listonesec: 'marriage' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'newspaper', listonesec: 'interview' },
       ),
       
 

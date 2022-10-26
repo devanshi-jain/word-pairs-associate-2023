@@ -1,17 +1,17 @@
-<p>word-list-input-three works!</p>
 <form [formGroup]="inputForm " class="form-match">
   <label class="message">{{data.listhree}} - </label>
   <input disable-on-enter id="userInputs" 
           type="text" spellcheck=true 
           autofocus="autofocus"
           name="userInputs"
+          autocomplete="off"
           (keyup.enter)="onEnter(data.listhreesec,userInputs.value)" 
           (click)="$event.stopPropagation()"
           #userInputs>
-   <span class="outputMessage" style="color: red; text-align: center;">
+   <span class="outputMessage" style="color: red; text-align: center;font-size: x-large;">
     <div>{{errorMessage}}</div>
    </span> 
-   <span class="correctMessage" style="color: blue; text-align: center;">
+   <span class="correctMessage" style="color: blue; text-align: center;font-size: x-large;">
     <div>{{correctWord}}</div>
    </span>
   <label class="message">{{data.listhreesec}}</label>

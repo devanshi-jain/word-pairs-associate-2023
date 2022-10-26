@@ -59,7 +59,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   getWordsInputOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 6000);
+    }, 8000);
   }
   
 }

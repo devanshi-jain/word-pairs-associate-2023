@@ -7,6 +7,7 @@ h1 {
     color: #00629b;
     letter-spacing: .5px;
     font-size: 39px;
+    text-align: center;
 }
 h2, h3 {
   color: #444;
@@ -75,7 +76,7 @@ input[type="text"] {
   margin-top: 180px;
 }
 
-.btn-first-message{
+.continue_btn{
   font-weight: 700;
   font-size: 0.875rem;
   font-family: Open Sans,Tahoma,Geneva,sans-serif;
@@ -90,7 +91,6 @@ input[type="text"] {
     display: inline-block;
     padding: 6px 12px;
     *padding: 0px 12px;
-    font-weight: 700;
     line-height: 16px;
     white-space: nowrap;
     background-image: none;
@@ -98,7 +98,6 @@ input[type="text"] {
     border-radius: 4px;
     box-sizing: border-box;
     color: #fff;
-    font-family: Open Sans, Tahoma, Geneva, sans-serif;
     text-align: center;
     min-height: 35px;
     *min-height: 0px;
@@ -122,12 +121,31 @@ p{
   font-size: 130%;
   margin-bottom: 25px;
   text-align: center;
+  margin-top: 55px;
+}
+.list-display{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 130%;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: xxx-large;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) 
+
 }
 
 .next_btn{
   font-weight: 700;
   font-size: 0.875rem;
   font-family: Open Sans,Tahoma,Geneva,sans-serif;
+  margin-left: -25px;
   box-sizing: border-box;
     min-height: 2.1875rem;
     *height: 1.5rem;
@@ -162,6 +180,9 @@ p{
     font-size: 14px;
     text-transform: uppercase;
     border-color: transparent;
+    position: absolute;
+    top: 55%;
+    transform: translate(-50%, -50%);
 }
 /*.next_btn :hover {
   text-decoration: underline;
@@ -190,16 +211,35 @@ input[type="text"]{
   width: fit-content;
   font-size: xxx-large;
 }
+.form-match {
+  display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 130%;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: xxx-large;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.test-end{
+  margin-top: 30%;
+}
 
-.form-match label {
+/*.form-match label {
   display:inline-block;
   *display: inline;     /* for IE7*/
-  zoom:1;              /* for IE7*/
-  padding-top: 5px;
+  /*zoom:1;              /* for IE7*/
+  /*padding-top: 5px;
   text-align: right;
   font-size: xxx-large;
   margin-left: 100px;
-}
+}*/
 
 .swal2-styled.swal2-confirm {
   background-color: #227ab9 !important;

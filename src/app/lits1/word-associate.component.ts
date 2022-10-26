@@ -7,7 +7,6 @@ import { WordComponent } from '../word.component';
   selector: 'app-word-associate',
   template: `
   <div>
-  <p>Working there list!</p>
   <ng-template wordHost></ng-template>
   <div class="next_btn_wrap">
     <button class="next_btn" 
@@ -69,6 +68,6 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
   getWordsOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 1000);
+    }, 8000);
   }
 }
