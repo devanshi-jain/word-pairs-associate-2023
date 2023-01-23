@@ -23,7 +23,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   counter = 0;
 
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
-  interval: number | undefined;
+  interval: number | any;
 
   ngOnInit(): void {
     this.loadComponent();
@@ -38,12 +38,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
 
   loadComponent() {
     if (this.counter < this.wordsInput.length) {
-     
-      
-      //Show random words
-      this.wordsInput.sort(() => Math.random() - Math.random()).slice(0,1);
-      
-      this.currentAdIndex = Math.floor((this.currentAdIndex + 1) % this.wordsInput.length);
+      this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
       const addWordInput = this.wordsInput[this.currentAdIndex];
       
       const viewContainerRef = this.wordHost.viewContainerRef;
@@ -51,15 +46,16 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
 
       const componentRef = viewContainerRef.createComponent<WordComponent>(addWordInput.component);
       componentRef.instance.data = addWordInput.data;
+      //console.log("Testing: ", componentRef.instance.data );
       this.counter++;
-      
+      //console.log("Counter in alert: ", this.counter);
     }
   }
   //set the interval to minutes 
   getWordsInputOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 8000);
+    }, 11000);//(11000) User has 11 seconds to fill in the blank
   }
   
 }

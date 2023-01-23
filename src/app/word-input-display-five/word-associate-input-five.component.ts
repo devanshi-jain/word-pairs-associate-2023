@@ -22,7 +22,7 @@ export class WordAssociateInputFiveComponent implements OnInit, OnDestroy {
   counter = 0;
 
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
-  interval: number | undefined;
+  interval: number | any;
 
 
   ngOnInit(): void {
@@ -37,26 +37,25 @@ export class WordAssociateInputFiveComponent implements OnInit, OnDestroy {
   }
   loadComponent() {
     if (this.counter < this.wordsInputFive.length) {
-      //Show random words
-      this.wordsInputFive.sort(() => Math.random() - Math.random()).slice(0,1);
-      
-      this.currentAdIndex = Math.floor((this.currentAdIndex + 1) % this.wordsInputFive.length);
+      this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInputFive.length;
       const addWordInput = this.wordsInputFive[this.currentAdIndex];
-      
+
       const viewContainerRef = this.wordHost.viewContainerRef;
       viewContainerRef.clear();
 
       const componentRef = viewContainerRef.createComponent<WordComponent>(addWordInput.component);
       componentRef.instance.data = addWordInput.data;
+      //console.log("Testing: ", componentRef.instance.data );
       this.counter++;
-      
-      
+      //console.log("Counter in alert: ", this.counter);
+
+
     }
   }
 
   getWordsInputFive() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 6000);
+    }, 11000);//User has 11 seconds to fill in the blank (11000)
   }
 }

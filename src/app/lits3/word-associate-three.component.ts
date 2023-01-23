@@ -44,7 +44,7 @@ export class WordAssociateThreeComponent implements OnInit, OnDestroy {
 
   loadComponent() {
     if (this.counter < this.wordsThree.length) {
-      
+
       this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsThree.length;
       const addWordThree = this.wordsThree[this.currentAdIndex];
 
@@ -54,9 +54,9 @@ export class WordAssociateThreeComponent implements OnInit, OnDestroy {
       const componentRef = viewContainerRef.createComponent<WordComponent>(addWordThree.component);
       componentRef.instance.data = addWordThree.data;
       this.counter++;
+
       if (this.counter == this.wordsThree.length) {
         this.nextClick = false;
-        console.log("button", this.nextClick);
       }
     }
     else {
@@ -67,6 +67,6 @@ export class WordAssociateThreeComponent implements OnInit, OnDestroy {
   getWordsThree() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 1000);
+    }, 5500);//The words flash every 5.5 seconds(5500)
   }
 }

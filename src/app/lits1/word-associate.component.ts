@@ -44,30 +44,31 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
 
     if (this.counter < this.words.length) {
 
-    this.currentAdIndex = (this.currentAdIndex + 1) % this.words.length;
-    const addWord = this.words[this.currentAdIndex];
-    
+      this.currentAdIndex = (this.currentAdIndex + 1) % this.words.length;
+      const addWord = this.words[this.currentAdIndex];
 
-    const viewContainerRef = this.wordHost.viewContainerRef;
-    viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<WordComponent>(addWord.component);
-    componentRef.instance.data = addWord.data;
-    this.counter++;
-      
+
+      const viewContainerRef = this.wordHost.viewContainerRef;
+      viewContainerRef.clear();
+
+      const componentRef = viewContainerRef.createComponent<WordComponent>(addWord.component);
+      componentRef.instance.data = addWord.data;
+      this.counter++;
+
+
       if (this.counter == this.words.length) {
         this.nextClick = false;
-        console.log("button", this.nextClick);
       }
+    }
+    else {
+      return;
+    }
   }
-  else {
-    return;
-  }
-}
 
   getWordsOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 8000);
+    }, 5500);// 5500 The words flash every 5.5 seconds
   }
 }

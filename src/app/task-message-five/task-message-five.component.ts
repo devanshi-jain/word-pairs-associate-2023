@@ -7,11 +7,11 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class TaskMessageFiveComponent implements OnInit {
 
 
-  @HostListener('window:keydown.space', ['$event'])
+ /* @HostListener('window:keydown.space', ['$event'])
    handleKeyboardEvent(event: KeyboardEvent) {
-     window.location.href = '/word-display-input-five';
+     window.location.href="/word-pairs-associate/input-five", true;
    
-   }
+   }*/ //This is not working properly for space bar 
   constructor() { }
 
   ngOnInit(): void {

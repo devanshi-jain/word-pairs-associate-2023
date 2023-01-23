@@ -8,11 +8,11 @@ import { HostListener } from '@angular/core';
 })
 export class TaskMessageComponent implements OnInit {
 
- @HostListener('window:keydown.space', ['$event'])
+ /*@HostListener('window:keydown.space', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    window.location.href = '/word-display-input';
-  
-  }
+    window.location.href="/word-pairs-associate/input-one", true;
+    
+  }*/ //This is not working properly for space bar 
 
   constructor() { }
 

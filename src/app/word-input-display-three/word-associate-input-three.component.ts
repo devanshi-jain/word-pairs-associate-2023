@@ -18,10 +18,10 @@ export class WordAssociateInputThreeComponent implements OnInit, OnDestroy {
   constructor() { }
 
   currentAdIndex = -1;
-  counter = 0;
+  globalCounter = 0;
 
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
-  interval: number | undefined;
+  interval: number | any;
 
 
   ngOnInit(): void {
@@ -35,27 +35,25 @@ export class WordAssociateInputThreeComponent implements OnInit, OnDestroy {
     }
   }
   loadComponent() {
-    if (this.counter < this.wordsInputThree.length) {
-
-      this.wordsInputThree.sort(() => Math.random() - Math.random()).slice(0,1);
-      
-      this.currentAdIndex = Math.floor((this.currentAdIndex + 1) % this.wordsInputThree.length);
+    if (this.globalCounter < this.wordsInputThree.length) {
+      this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInputThree.length;
       const addWordInput = this.wordsInputThree[this.currentAdIndex];
-      
+
       const viewContainerRef = this.wordHost.viewContainerRef;
       viewContainerRef.clear();
 
       const componentRef = viewContainerRef.createComponent<WordComponent>(addWordInput.component);
       componentRef.instance.data = addWordInput.data;
-      this.counter++;
-      
+      //console.log("Testing: ", componentRef.instance.data);
+      this.globalCounter++;
+      //console.log("Counter in alert: ", this.globalCounter);
     }
   }
 
   getWordsThree() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 6000);
+    }, 11000);//User has 11 seconds to fill in the blank(11000)
   }
 
 }

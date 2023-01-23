@@ -1,11 +1,11 @@
 <form [formGroup]="inputForm " class="form-match">
+    <h6>Please press ENTER after you type your word</h6>
     <label class="message">{{data.listfive}} - </label>
     <input disable-on-enter id="userInputs" 
             type="text" spellcheck=true 
-            autofocus="autofocus"
             name="userInputs"
             autocomplete="off"
-            (keyup.enter)="onEnter(data.listfivesec,userInputs.value)" 
+            (keyup.enter)="onEnter(data.listfive,data.listfivesec,userInputs.value.toLowerCase())" 
             (click)="$event.stopPropagation()"
             #userInputs>
      <span class="outputMessage" style="color: red; text-align: center; font-size: x-large;">
@@ -14,11 +14,5 @@
      <span class="correctMessage" style="color: blue; text-align: center; font-size: x-large;">
       <div>{{correctWord}}</div>
      </span>
-    <label class="message">{{data.listfivesec}}</label>
-    
   </form>
-  <ul>
-    <li *ngFor="let d of newData; let i=index; trackBy: trackByFn">
-       {{d}}
-    </li>
-  <ul>
+ 

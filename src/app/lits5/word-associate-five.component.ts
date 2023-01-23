@@ -59,18 +59,16 @@ export class WordAssociateFiveComponent implements OnInit, OnDestroy {
 
       if (this.counter == this.wordsFive.length) {
         this.nextClick = false;
-        console.log("button", this.nextClick);
       }
     }
     else {
       return;
     }
-    console.log("how you do this?", this.counter);
   }
 
   getWordsFive() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 1000);
+    }, 5500);//The words flash every 5.5 seconds (5500)
   }
 }
