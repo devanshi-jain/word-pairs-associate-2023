@@ -26,151 +26,151 @@ export class WordService {
       new AddWord(
         WordListComponent,
         { listone: 'sonata', listonesec: 'joy' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'banner', listonesec: 'camp' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'tendency', listonesec: 'increment' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'mother', listonesec: 'child' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'insect', listonesec: 'caterpillar' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'river', listonesec: 'ship' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'coast', listonesec: 'beach' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'gun', listonesec: 'bullet' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'blacksmith', listonesec: 'metal' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'home', listonesec: 'room' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'building', listonesec: 'hall' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'rain', listonesec: 'flood' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'avenue', listonesec: 'tree' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'decency', listonesec: 'truth' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'decree', listonesec: 'decision' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'diamond', listonesec: 'hardness' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'result', listonesec: 'effect' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'occupation', listonesec: 'doctor' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'book', listonesec: 'story' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'attack', listonesec: 'operation' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'cat', listonesec: 'soul' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'doll', listonesec: 'cradle' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'episode', listonesec: 'happiness' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'railroad', listonesec: 'steam' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'kitchen', listonesec: 'pot' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'countryside', listonesec: 'swamp' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'musician', listonesec: 'pianist' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'industry', listonesec: 'factory' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'clothing', listonesec: 'scarf' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'car', listonesec: 'headlight' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'gale', listonesec: 'wind' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'bouquet', listonesec: 'blossom' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'bottle', listonesec: 'toast' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'group', listonesec: 'person' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'crisis', listonesec: 'emergency' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'girl', listonesec: 'engagement' },
-      // ),
-      // new AddWord(
-      //   WordListComponent,
-      //   { listone: 'harbor', listonesec: 'crane' },
-      // 
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'banner', listonesec: 'camp' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'tendency', listonesec: 'increment' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'mother', listonesec: 'child' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'insect', listonesec: 'caterpillar' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'river', listonesec: 'ship' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'coast', listonesec: 'beach' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'gun', listonesec: 'bullet' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'blacksmith', listonesec: 'metal' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'home', listonesec: 'room' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'building', listonesec: 'hall' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'rain', listonesec: 'flood' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'avenue', listonesec: 'tree' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'decency', listonesec: 'truth' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'decree', listonesec: 'decision' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'diamond', listonesec: 'hardness' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'result', listonesec: 'effect' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'occupation', listonesec: 'doctor' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'book', listonesec: 'story' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'attack', listonesec: 'operation' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'cat', listonesec: 'soul' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'doll', listonesec: 'cradle' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'episode', listonesec: 'happiness' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'railroad', listonesec: 'steam' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'kitchen', listonesec: 'pot' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'countryside', listonesec: 'swamp' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'musician', listonesec: 'pianist' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'industry', listonesec: 'factory' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'clothing', listonesec: 'scarf' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'car', listonesec: 'headlight' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'gale', listonesec: 'wind' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'bouquet', listonesec: 'blossom' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'bottle', listonesec: 'toast' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'group', listonesec: 'person' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'crisis', listonesec: 'emergency' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'girl', listonesec: 'engagement' },
+      ),
+      new AddWord(
+        WordListComponent,
+        { listone: 'harbor', listonesec: 'crane' },
+      
       ),
     ];
   }
@@ -192,151 +192,151 @@ export class WordService {
       new AddWord(
         WordListInputOneComponent,
         { listone: 'sonata', listonesec: 'joy' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'banner', listonesec: 'camp' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'tendency', listonesec: 'increment' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'mother', listonesec: 'child' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'insect', listonesec: 'caterpillar' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'river', listonesec: 'ship' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'coast', listonesec: 'beach' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'gun', listonesec: 'bullet' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'blacksmith', listonesec: 'metal' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'home', listonesec: 'room' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'building', listonesec: 'hall' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'rain', listonesec: 'flood' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'avenue', listonesec: 'tree' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'decency', listonesec: 'truth' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'decree', listonesec: 'decision' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'diamond', listonesec: 'hardness' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'result', listonesec: 'effect' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'occupation', listonesec: 'doctor' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'book', listonesec: 'story' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'attack', listonesec: 'operation' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'cat', listonesec: 'soul' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'doll', listonesec: 'cradle' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'episode', listonesec: 'happiness' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'railroad', listonesec: 'steam' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'kitchen', listonesec: 'pot' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'countryside', listonesec: 'swamp' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'musician', listonesec: 'pianist' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'industry', listonesec: 'factory' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'clothing', listonesec: 'scarf' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'car', listonesec: 'headlight' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'gale', listonesec: 'wind' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'bouquet', listonesec: 'blossom' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'bottle', listonesec: 'toast' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'group', listonesec: 'person' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'crisis', listonesec: 'emergency' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'girl', listonesec: 'engagement' },
-      // ),
-      // new AddWord(
-      //   WordListInputOneComponent,
-      //   { listone: 'harbor', listonesec: 'crane' },
-      // 
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'banner', listonesec: 'camp' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'tendency', listonesec: 'increment' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'mother', listonesec: 'child' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'insect', listonesec: 'caterpillar' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'river', listonesec: 'ship' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'coast', listonesec: 'beach' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'gun', listonesec: 'bullet' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'blacksmith', listonesec: 'metal' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'home', listonesec: 'room' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'building', listonesec: 'hall' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'rain', listonesec: 'flood' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'avenue', listonesec: 'tree' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'decency', listonesec: 'truth' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'decree', listonesec: 'decision' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'diamond', listonesec: 'hardness' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'result', listonesec: 'effect' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'occupation', listonesec: 'doctor' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'book', listonesec: 'story' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'attack', listonesec: 'operation' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'cat', listonesec: 'soul' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'doll', listonesec: 'cradle' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'episode', listonesec: 'happiness' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'railroad', listonesec: 'steam' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'kitchen', listonesec: 'pot' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'countryside', listonesec: 'swamp' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'musician', listonesec: 'pianist' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'industry', listonesec: 'factory' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'clothing', listonesec: 'scarf' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'car', listonesec: 'headlight' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'gale', listonesec: 'wind' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'bouquet', listonesec: 'blossom' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'bottle', listonesec: 'toast' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'group', listonesec: 'person' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'crisis', listonesec: 'emergency' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'girl', listonesec: 'engagement' },
+      ),
+      new AddWord(
+        WordListInputOneComponent,
+        { listone: 'harbor', listonesec: 'crane' },
+      
       )
     ];
   }
