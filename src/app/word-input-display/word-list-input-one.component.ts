@@ -99,7 +99,7 @@ export class WordListInputOneComponent implements OnInit {
         this.percentage = (global_correct * 100)/40              //yoannes
 
 
-    if (fromDataList == 'sonata') {
+    if (fromDataList == 'harbor') {
       if (global_correct < 24) { // total of 40 words, 60% of 40 is 24 
         var thisComp = this;
                
