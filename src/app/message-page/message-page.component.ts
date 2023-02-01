@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
+import { Router } from '@angular/router'; // yoannes using route to navigate between pages without affecting my global variables values
 
 const win: Window = window; //yoannes
 
@@ -14,7 +15,7 @@ export class MessagePageComponent implements OnInit {
   // constructor() { }
     //constructor() { }
   //yoannes Inject the class in the components where you want to access the global variable:
-  constructor(private globalService: AppModule) {}
+  constructor(private globalService: AppModule, private router: Router) {}
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
@@ -26,13 +27,14 @@ export class MessagePageComponent implements OnInit {
   }
   
   
-  //yoannes function to get the Study ID
+  //function to get the Study ID
   inputStudyId(){
       Swal.fire({
         title: 'Enter Study ID',
         input: 'text',
         width: 700,
         padding: 50,
+        allowEscapeKey: false,
         inputAttributes: {
           autocapitalize: 'off'
         },
@@ -45,7 +47,7 @@ export class MessagePageComponent implements OnInit {
               'Please enter a Study ID'
             )
           }else{
-            AppModule.globalVariable = inputValue;
+            AppModule.globalVariable = inputValue.toUpperCase();
             this.popSweetAlertSelection()
           }
         },
@@ -59,7 +61,7 @@ export class MessagePageComponent implements OnInit {
 
       Swal.fire(
         {
-          text: "",
+          text: "Study ID " + AppModule.globalVariable,
           showCancelButton: true,
           cancelButtonText: "Testing (morning)",
           confirmButtonColor: '#3085d6',
@@ -73,8 +75,8 @@ export class MessagePageComponent implements OnInit {
             // do nothing stay in testing evening
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           
-          //Go to the home page
-          win.location = "task-message"
+          //Go to the task page
+          this.router.navigate(['/task-message']);
         } 
       });
     }

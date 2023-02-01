@@ -33,8 +33,7 @@ export class WordListInputThreeComponent implements OnInit {
   numberCorrectPairs = 0;
   current_date = new Date().toISOString(); 
   percentage = 0;
-  listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
- 
+  listOfPairs ="fire - smoke,animal - fox,road - car,weaver - troubles,flakes - rescue,rein - turn,mission - messenger,furniture - chair,body - blood,army - admiral,bird - lark,celebration - alcohol,grain - oats,joint - knuckle,artist - painting,statement - doubt,revolt - policeman,alliance - betrayal,event - incident,factory - foreman,plant - leaf,tenant - rent,commercial - candy,giant - club,trip - map,mountain - boulder,ruler - palace,play - drama,illness - doctor,church - heaven,infection - bacteria,university - semester,underworld - crime,instrument - bagpipes,glacier - avalanche,idea - proverb,faith - renouncement,theory - concept,authority - state,fir - needle";
 
   trackByFn(index: any, item: any) {
     return index;
@@ -108,7 +107,7 @@ export class WordListInputThreeComponent implements OnInit {
     this.percentage = (global_correct * 100)/40              //yoannes
 
 
-if (fromDataList == 'harbor') {
+if (fromDataList == 'fir') {
   if (global_correct < 24) { // total of 40 words, 60% of 40 is 24 
     var thisComp = this;
            
@@ -126,7 +125,7 @@ if (fromDataList == 'harbor') {
     ).then((result) => {
       if (result.value) {
         //win.location = "input-one"
-        this.router.navigate(['/app-lits-one']);
+        this.router.navigate(['/app-lits-three']);
         this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //Asking the user to enter the Study ID to generate the file
@@ -163,7 +162,7 @@ createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number
   /* Set the link's href to the Blob object */
   link.href = window.URL.createObjectURL(blob);
   /* Set the link's download attribute */
-  link.download = this.studyID + '-' + current_date +'.csv';
+  link.download = AppModule.globalVariable + '-' + current_date +'.csv';
   /* Append the link to the document */
   document.body.appendChild(link);
   /* Click the link to trigger the download */

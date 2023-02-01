@@ -137,6 +137,7 @@ export class WordListInputOneComponent implements OnInit {
                
             //Go to the home page
             this.router.navigate(['/pass-test']);
+            AppModule.globalVariable = ""
           } 
         });
       }
@@ -169,7 +170,7 @@ export class WordListInputOneComponent implements OnInit {
     /* Set the link's href to the Blob object */
     link.href = window.URL.createObjectURL(blob);
     /* Set the link's download attribute */
-    link.download = this.studyID + '-' + current_date +'.csv';
+    link.download = AppModule.globalVariable + '-' + current_date +'.csv';
     /* Append the link to the document */
     document.body.appendChild(link);
     /* Click the link to trigger the download */

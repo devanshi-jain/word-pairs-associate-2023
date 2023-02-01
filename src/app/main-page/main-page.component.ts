@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppModule } from '../app.module'; // yoannes
+import Swal from 'sweetalert2'; // yoannes
+
+const win: Window = window; //yoannes
 
 @Component({
   selector: 'app-main-page',
@@ -7,7 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  // constructor() { }
+    //constructor() { }
+  //yoannes Inject the class in the components where you want to access the global variable:
+  constructor(private globalService: AppModule) {}
+
+  accessGlobalVariable() {
+    console.log(AppModule.globalVariable);
+  }
+  // yoannes end
 
   ngOnInit(): void {
   }
