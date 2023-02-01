@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { WordDirective } from '../word.directive';
 import { AddWord } from '../add-word';
 import { WordComponent } from '../word.component';
+import { AppModule } from '../app.module'; // yoannes
 
 @Component({
   selector: 'app-word-associate',
@@ -21,7 +22,14 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
 
   nextClick = true;
 
-  constructor() { }
+  //constructor() { }
+  //yoannes Inject the class in the components where you want to access the global variable:
+  constructor(private globalService: AppModule) {}
+
+  accessGlobalVariable() {
+    console.log(AppModule.globalVariable);
+  }
+  // yoannes end
 
   currentAdIndex = -1;
   counter = 0;
@@ -69,6 +77,6 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
   getWordsOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 5500);// 5500 The words flash every 5.5 seconds
+    }, 5500);// 5500 The words flash every 5.5 seconds yoannes time
   }
 }

@@ -41,6 +41,15 @@ import { PassTestComponent } from './pass-test.component';
 import { WordListInputThreeComponent } from './word-input-display-three/word-list-input-three.component'; 
 import { WordListInputFiveComponent } from './word-input-display-five/word-list-input-five.component'; 
 
+//yoannes , a static property needs to be created to be used as global variable
+import { Injectable } from '@angular/core'; 
+
+@Injectable({ 
+  providedIn: 'root'
+})
+
+//yoannes end
+
 @NgModule({
   imports: [ 
     BrowserModule, 
@@ -88,5 +97,8 @@ import { WordListInputFiveComponent } from './word-input-display-five/word-list-
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule { 
+  //yoannes static property that will be your global variable:
+  static globalVariable: any;
+}
 

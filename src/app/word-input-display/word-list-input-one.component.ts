@@ -1,11 +1,14 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { listenerCount } from 'process';
+import { AppModule } from '../app.module'; // yoannes
+import Swal from 'sweetalert2'; // yoannes
 
 
 var global_error = 0;
 var global_correct = 0;
+var   myUserInputList =  ""; //yoannes
 const win: Window = window;
 
 @Component({
@@ -24,12 +27,14 @@ export class WordListInputOneComponent implements OnInit {
   userInputs: string = '';
   words = 0;
 
-
+//yoannes
   studyID: string = '';
   numberOfWords = 40;
   numberCorrectPairs = 0;
   current_date = new Date().toISOString(); 
   percentage = 0;
+  listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
+ 
  
 
 
@@ -37,11 +42,15 @@ export class WordListInputOneComponent implements OnInit {
     return index;
   }
 
-
+ //constructor() { }
+  //yoannes Inject the class in the components where you want to access the global variable:
   constructor(private myForm: FormBuilder,
-    private router: Router) {
+    private router: Router, private globalService: AppModule) {
   }
-
+  accessGlobalVariable() {
+    console.log(AppModule.globalVariable);
+  }
+// yoannes end
 
   ngOnInit() {
     this.inputForm = this.myForm.group({
@@ -65,6 +74,9 @@ export class WordListInputOneComponent implements OnInit {
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
+    //creating a list w the values given by the user
+    myUserInputList += myuserInput + ",";
+    
     if (myuserInput === '') {
       this.errorMessage = "The correct word is " + myWord;
       global_error++;
@@ -116,10 +128,12 @@ export class WordListInputOneComponent implements OnInit {
           }
         ).then((result) => {
           if (result.value) {
-            win.location = "input-one"
+            //win.location = "input-one"
+            this.router.navigate(['/app-lits-one']);
+            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
           } else if (result.dismiss === Swal.DismissReason.cancel) {
             //Asking the user to enter the Study ID to generate the file
-            this.inputStudyId();
+            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
                
             //Go to the home page
             this.router.navigate(['/pass-test']);
@@ -134,6 +148,7 @@ export class WordListInputOneComponent implements OnInit {
         ).then(function () {
           win.location = "pass-test";
         });
+        this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
       }
     }
   }
@@ -143,7 +158,8 @@ export class WordListInputOneComponent implements OnInit {
   // FRunction that creates the .CSV file //yoannes
   createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
     /* Define the data */
-    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date'],[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date]];
+    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date',this.listOfPairs]
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, myUserInputList]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */
@@ -161,34 +177,5 @@ export class WordListInputOneComponent implements OnInit {
     /* Remove the link from the document */
     document.body.removeChild(link);
   }
-
-  //function to get the Study ID
-  inputStudyId(){
-    Swal.fire({
-      title: 'Enter Study ID',
-      input: 'text',
-      width: 700,
-      padding: 50,
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: false,
-      confirmButtonText: 'Submit',
-      showLoaderOnConfirm: true,
-      preConfirm: (inputValue) => {
-        if (!inputValue) {
-          Swal.showValidationMessage(
-            'Please enter a Study ID'
-          )
-        }else{
-          this.studyID = inputValue;
-          //Creating the .CSV file that stores final results. //yoannes
-          this.createCSVFile(this.studyID, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
-          return inputValue
-        }
-      },
-      allowOutsideClick: () => !Swal.isLoading()
-    })
-  } 
 }
 
