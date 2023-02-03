@@ -9,6 +9,9 @@ var global_error = 0;
 var global_correct = 0;
 var   myUserInputList =  ""; //yoannes
 const win: Window = window;
+const currentTime = new Date();
+const pacificTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+const hour = pacificTime.getHours();
 
 
 @Component({
@@ -54,7 +57,7 @@ export class WordListInputThreeComponent implements OnInit {
     this.inputForm = this.myForm.group({
       userInputs: ''
     });
-
+    myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   ngOnDestroy() { }
@@ -73,8 +76,17 @@ export class WordListInputThreeComponent implements OnInit {
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string, myWord: string, myuserInput: string) {
+    
+    //creating a list w the values given by the user
+    myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
+    myUserInputList += myuserInput + ",";
+
     if (myuserInput === '') {
-      this.errorMessage = "The correct word is " + myWord;
+
+      // yoannes, checking time to print message if its
+      if (hour >= 17) {
+        this.errorMessage = "The correct word is " + myWord; 
+      }
       global_error++;
       /*console.log("Correct:", global_correct);
       console.log("Error :", global_error);
@@ -82,14 +94,21 @@ export class WordListInputThreeComponent implements OnInit {
     }
 
     else if (myuserInput != myWord) {
-      this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
-      global_error++;
-      /*console.log("Correct:", global_correct);
-      console.log("Error :", global_error);
-      console.log("From data: ", fromDataList);*/
+
+      // yoannes, checking time to print message if its
+      if (hour >= 17) {
+        this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
+      }
+     global_error++;
+       /*console.log("Correct:", global_correct);
+       console.log("Error :", global_error);
+       console.log("From data: ", fromDataList);*/
     }
     else if (myWord === myuserInput) {
-      this.correctWord = "Correct answer";
+      // yoannes, checking time to print message if its evening
+      if (hour >= 17) {
+        this.correctWord = "Correct answer"
+      }
       global_correct++;
       /*console.log("Correct:", global_correct);
       console.log("Error :", global_error);

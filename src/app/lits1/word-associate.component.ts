@@ -4,6 +4,7 @@ import { AddWord } from '../add-word';
 import { WordComponent } from '../word.component';
 import { AppModule } from '../app.module'; // yoannes
 
+
 @Component({
   selector: 'app-word-associate',
   template: `
@@ -77,6 +78,6 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
   getWordsOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 11000);// 5500 The words flash every 5.5 seconds yoannes time
+    }, 5500);// 5500 The words flash every 5.5 seconds yoannes time
   }
 }

@@ -10,6 +10,9 @@ var global_error = 0;
 var global_correct = 0;
 var   myUserInputList =  ""; //yoannes
 const win: Window = window;
+const currentTime = new Date();
+const pacificTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+const hour = pacificTime.getHours();
 
 @Component({
   selector: 'app-word-list-input-one',
@@ -56,7 +59,7 @@ export class WordListInputOneComponent implements OnInit {
     this.inputForm = this.myForm.group({
       userInputs: ''
     });
-
+    myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   ngOnDestroy() { }
@@ -74,11 +77,21 @@ export class WordListInputOneComponent implements OnInit {
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
+
+
     //creating a list w the values given by the user
+    myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
     myUserInputList += myuserInput + ",";
+
+    //delay the action for 5 seconds
+
     
     if (myuserInput === '') {
-      this.errorMessage = "The correct word is " + myWord;
+
+      // yoannes, checking time to print message if its
+      if (hour >= 17) {
+        this.errorMessage = "The correct word is " + myWord; 
+      }
       global_error++;
       /*console.log("Correct:", global_correct);
       console.log("Error :", global_error);
@@ -86,14 +99,21 @@ export class WordListInputOneComponent implements OnInit {
     }
 
     else if (myuserInput != myWord) {
-      this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
-      global_error++;
+
+      // yoannes, checking time to print message if its
+      if (hour >= 17) {
+        this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
+      }
+     global_error++;
        /*console.log("Correct:", global_correct);
        console.log("Error :", global_error);
        console.log("From data: ", fromDataList);*/
     }
     else if (myWord === myuserInput) {
-      this.correctWord = "Correct answer";
+      // yoannes, checking time to print message if its evening
+      if (hour >= 17) {
+        this.correctWord = "Correct answer"
+      }
       global_correct++;
       /*console.log("Correct:", global_correct);
       console.log("Error :", global_error);
@@ -114,10 +134,7 @@ export class WordListInputOneComponent implements OnInit {
     if (fromDataList == 'harbor') {
       if (global_correct < 24) { // total of 40 words, 60% of 40 is 24 
         var thisComp = this;
-               
-        // //Creating the .CSV file that stores final results. //yoannes
-        // this.createCSVFile(studyID, numberOfWords ,numberCorrectPairs ,percentage , current_date);     
-        Swal.fire(
+     Swal.fire(
           {
             text: "You answered " + this.percentage + " % of the questions correctly. Please try up to 3 times in total to reach at least 60% of correctly answered questions",
             showCancelButton: true,
@@ -178,5 +195,6 @@ export class WordListInputOneComponent implements OnInit {
     /* Remove the link from the document */
     document.body.removeChild(link);
   }
+  
 }
 

@@ -55,7 +55,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   getWordsInputOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 100);//(11000) User has 11 seconds to fill in the blank yoannes time
+    }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
   }
   
 }
