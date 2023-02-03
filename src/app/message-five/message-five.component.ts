@@ -19,6 +19,7 @@ export class MessageFiveComponent implements OnInit {
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
+    console.log(AppModule.trainigTesting);
   }
   // yoannes end
 
@@ -73,9 +74,11 @@ export class MessageFiveComponent implements OnInit {
       ).then((result) => {
         if (result.value) {
             // do nothing stay in testing evening
+            AppModule.trainigTesting = "training";
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           
           //Go to the task page
+          AppModule.trainigTesting = "testing";
           this.router.navigate(['/task-message-five']);
         } 
       });

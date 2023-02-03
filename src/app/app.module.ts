@@ -100,5 +100,6 @@ import { Injectable } from '@angular/core';
 export class AppModule { 
   //yoannes static property that will be your global variable:
   static globalVariable: any;
+  static trainigTesting: any;
 }
 

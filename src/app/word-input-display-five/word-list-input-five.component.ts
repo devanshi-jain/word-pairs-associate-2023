@@ -9,9 +9,6 @@ var global_error = 0;
 var global_correct = 0;
 var   myUserInputList =  ""; //yoannes
 const win: Window = window;
-const currentTime = new Date();
-const pacificTime = new Date(currentTime.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-const hour = pacificTime.getHours();
 
 @Component({
   selector: 'app-word-list-input-five',
@@ -47,6 +44,7 @@ export class WordListInputFiveComponent implements OnInit {
   }
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
+    console.log(AppModule.trainigTesting);
   }
 // yoannes end
 
@@ -80,7 +78,7 @@ export class WordListInputFiveComponent implements OnInit {
     if (myuserInput === '') {
 
       // yoannes, checking time to print message if its
-      if (hour >= 17) {
+      if (AppModule.trainigTesting == "training"){
         this.errorMessage = "The correct word is " + myWord; 
       }
       global_error++;
@@ -92,7 +90,7 @@ export class WordListInputFiveComponent implements OnInit {
     else if (myuserInput != myWord) {
 
       // yoannes, checking time to print message if its
-      if (hour >= 17) {
+      if (AppModule.trainigTesting == "training") {
         this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
       }
      global_error++;
@@ -102,7 +100,7 @@ export class WordListInputFiveComponent implements OnInit {
     }
     else if (myWord === myuserInput) {
       // yoannes, checking time to print message if its evening
-      if (hour >= 17) {
+      if (AppModule.trainigTesting == "training") {
         this.correctWord = "Correct answer"
       }
       global_correct++;
