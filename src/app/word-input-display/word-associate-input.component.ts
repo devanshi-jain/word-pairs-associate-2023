@@ -27,7 +27,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
 
   ngOnInit(): void {
     this.loadComponent();
-    this.getWordsInputOne();
+    // this.getWordsInputOne();
   }
 
   ngOnDestroy() {
@@ -49,14 +49,17 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
       //console.log("Testing: ", componentRef.instance.data );
       this.counter++;
       //console.log("Counter in alert: ", this.counter);
+      setTimeout(() => {
+        this.loadComponent();
+      }, 11000);
     }
   }
   //set the interval to minutes 
-  getWordsInputOne() {
-    this.interval = window.setInterval(() => {
-      this.loadComponent();
-    }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
-  }
+  // getWordsInputOne() {
+  //   this.interval = window.setInterval(() => {
+  //     this.loadComponent();
+  //   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
+  // }
   
 }
 
