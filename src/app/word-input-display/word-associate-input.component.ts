@@ -4,14 +4,19 @@ import { randomInt } from 'crypto';
 import { AddWord } from '../add-word';
 import { WordComponent } from '../word.component';
 import { WordDirective } from '../word.directive';
+import { Router } from '@angular/router';
+import { AppModule } from '../app.module'; // yoannes
+import Swal from 'sweetalert2'; // yoannes
 
 
+var   myUserInputList =  ""; //yoannes
+const win: Window = window;
 
 @Component({
   selector: 'app-word-associate-input',
   templateUrl: './word-associate-input.component.html',
 })
-export class WordAssociateInputComponent implements OnInit, OnDestroy, WordComponent {
+export class WordAssociateInputComponent implements OnInit, WordComponent {
   @Input() wordsInput: AddWord[] = [];
   @Input() data: any;
   // inputForm!: FormGroup;
@@ -22,16 +27,17 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   currentWord: string = '';
   numError = 0;
   numCorrect =  0;
+  numberCorrectPairs = 0;
+  percentage = 0;
+  numberOfWords = 40;
   inputDisabled: boolean = false;
   inputElement: HTMLInputElement | undefined;
 
-  // constructor(private myForm: FormBuilder) { 
-  //   this.inputForm = this.myForm.group({
-  //     userInputs: new FormControl('')
-  //   });
-  // }
+  current_date = new Date().toISOString(); 
+  listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
 
-  constructor(){}
+
+  constructor(private router: Router,private globalService: AppModule){}
 
   currentAdIndex = -1;
   counter = 0;
@@ -44,7 +50,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     this.inputElement = <HTMLInputElement>document.getElementById('userInputs');
     this.loadComponent();
     // this.getWordsInputOne();
-    // myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
+    myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   //Focus cursor in input box for each set of words
@@ -58,22 +64,15 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     this.focus_element.nativeElement.focus();
   }
 
-
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  }
-
   loadComponent() {
-    this.inputDisabled = false;
-    // this.focus_element.nativeElement.value='';
-    this.inputElement!.value = '';
-    this.inputElement!.focus();
-    this.errorMessage = '';
-    this.correctMessage = '';
-
     if (this.counter < this.wordsInput.length) {
+      this.inputDisabled = false;
+      // this.focus_element.nativeElement.value='';
+      this.inputElement!.value = '';
+      this.inputElement!.focus();
+      this.errorMessage = '';
+      this.correctMessage = '';
+
       this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
       const addWordInput = this.wordsInput[this.currentAdIndex];
       this.currentWord = addWordInput.data.listone;
@@ -106,11 +105,12 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
 
+    console.log(AppModule.trainigTesting);
     this.inputDisabled = true;
 
     // //creating a list w the values given by the user
-    // myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
-    // myUserInputList += myuserInput + ",";
+    myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
+    myUserInputList += myuserInput + ",";
 
     // //delay the action for 5 seconds
 
@@ -118,9 +118,9 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     if (myuserInput === '') {
 
     //   // yoannes, checking time to print message if its
-      // if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainigTesting == "training") {
         this.errorMessage = "The correct word is " + myWord; 
-      // }
+      }
       this.numError++;
     //   /*console.log("Correct:", this.numCorrect);
     //   console.log("Error :", this.numError);
@@ -130,9 +130,9 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     else if (myuserInput != myWord) {
 
     //   // yoannes, checking time to print message if its
-    //   if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainigTesting == "training") {
         this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
-    //   }
+      }
      this.numError++;
     //    /*console.log("Correct:", this.numCorrect);
     //    console.log("Error :", this.numError);
@@ -140,16 +140,16 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     }
     else if (myWord === myuserInput) {
     //   // yoannes, checking time to print message if its evening
-    //   if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainigTesting == "training") {
         this.correctMessage = "Correct answer"
-    //   }
+      }
       this.numCorrect++;
     //   /*console.log("Correct:", this.numCorrect);
     //   console.log("Error :", this.numError);
     //   console.log("From data: ", fromDataList);*/
     }
 
-    // this.popSweetAlert(fromDataList);
+    this.popSweetAlert(fromDataList);
     
     //Wait 5 seconds, then move to next word. 
     setTimeout(() => {
@@ -157,6 +157,75 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
     }, 5000);
 
   };
+
+  popSweetAlert(fromDataList: string) {
+
+    this.numberCorrectPairs = this.numCorrect                 //yoannes
+    this.percentage = (this.numCorrect * 100)/40              //yoannes
+
+
+    if (fromDataList == 'harbor') {
+      if (this.numCorrect < 24) { // total of 40 words, 60% of 40 is 24 
+        var thisComp = this;
+        Swal.fire(
+          {
+            text: "You answered " + this.percentage + " % of the questions correctly. Please try up to 3 times in total to reach at least 60% of correctly answered questions",
+            showCancelButton: true,
+            cancelButtonText: "End Test",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continue Test'
+          }
+        ).then((result) => {
+          if (result.value) {
+            //win.location = "input-one"
+            this.router.navigate(['/app-lits-one']);
+            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            //Asking the user to enter the Study ID to generate the file
+            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+              
+            //Go to the home page
+            this.router.navigate(['/pass-test']);
+            AppModule.globalVariable = ""
+          } 
+        });
+      }
+      else if (this.numCorrect >= 24) { 
+        Swal.fire(
+          {
+            text: "You answered " + this.percentage + " % out of 40 words, Test completed"
+          }
+        ).then(function () {
+          win.location = "pass-test";
+        });
+        this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+      }
+    }
+  }
+
+  // FRunction that creates the .CSV file //yoannes
+  createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
+    /* Define the data */
+    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date',this.listOfPairs]
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, myUserInputList]];
+    /* Convert the data to a CSV string */
+    const csvContent = data.map(row => row.join(',')).join('\n');
+    /* Create a Blob object containing the CSV string */
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    /* Create a link element */
+    const link = document.createElement('a');
+    /* Set the link's href to the Blob object */
+    link.href = window.URL.createObjectURL(blob);
+    /* Set the link's download attribute */
+    link.download = AppModule.globalVariable + '-' + current_date +'.csv';
+    /* Append the link to the document */
+    document.body.appendChild(link);
+    /* Click the link to trigger the download */
+    link.click();
+    /* Remove the link from the document */
+    document.body.removeChild(link);
+  }
   
 }
 
