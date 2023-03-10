@@ -90,7 +90,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
       setTimeout((expectedCurrentWord) => {
         // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
         if(this.currentWord == expectedCurrentWord && this.inputDisabled == false){
-          this.loadComponent();
+          this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
         }
       }, 11000, this.currentWord);
     }
@@ -101,6 +101,7 @@ export class WordAssociateInputComponent implements OnInit, OnDestroy, WordCompo
   //     this.loadComponent();
   //   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
   // }
+
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
