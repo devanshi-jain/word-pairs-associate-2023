@@ -10,7 +10,6 @@
           (keyup.enter)="onEnter(currentWord,correctWord,userInputs.value.toLowerCase())" 
           (click)="$event.stopPropagation()"
           required
-          [disabled]="inputDisabled"
           >
    <span class="outputMessage" style="color: red; text-align: center;font-size: x-large;">
     <div>{{errorMessage}}</div>

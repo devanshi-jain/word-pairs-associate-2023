@@ -30,7 +30,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   numberCorrectPairs = 0;
   percentage = 0;
   numberOfWords = 40;
-  inputDisabled: boolean = false;
+  // inputDisabled: boolean = false;
   inputElement: HTMLInputElement | undefined;
 
   current_date = new Date().toISOString(); 
@@ -66,12 +66,11 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
   loadComponent() {
     if (this.counter < this.wordsInput.length) {
-      this.inputDisabled = false;
-      // this.focus_element.nativeElement.value='';
+      this.inputElement!.disabled = false;
       this.inputElement!.value = '';
-      this.inputElement!.focus();
       this.errorMessage = '';
       this.correctMessage = '';
+      this.inputElement!.focus();
 
       this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
       const addWordInput = this.wordsInput[this.currentAdIndex];
@@ -88,7 +87,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
       //console.log("Counter in alert: ", this.counter);
       setTimeout((expectedCurrentWord) => {
         // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
-        if(this.currentWord == expectedCurrentWord && this.inputDisabled == false){
+        if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
           this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
         }
       }, 11000, this.currentWord);
@@ -106,7 +105,8 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
 
     console.log(AppModule.trainigTesting);
-    this.inputDisabled = true;
+
+    this.inputElement!.disabled = true;
 
     // //creating a list w the values given by the user
     myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
@@ -148,19 +148,23 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     //   console.log("Error :", this.numError);
     //   console.log("From data: ", fromDataList);*/
     }
-
-    this.popSweetAlert(fromDataList);
-    
-
-    //Wait then move to next word. 
-    let loadTime = 1000; // 1 second if testing
-    if (AppModule.trainigTesting == "training") {
-      loadTime = 5000; // 5 seconds if training
+    if (fromDataList == 'harbor') {
+      if(AppModule.trainigTesting == "testing"){
+        this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+        this.router.navigate(['/pass-test']);
+      } else {
+        this.popSweetAlert(fromDataList);
+      }
+    } else {
+      //Wait then move to next word. 
+      let loadTime = 1000; // 1 second if testing
+      if (AppModule.trainigTesting == "training") {
+        loadTime = 5000; // 5 seconds if training
+      }
+      setTimeout(() => {
+        this.loadComponent();
+      }, loadTime);
     }
-    setTimeout(() => {
-      this.loadComponent();
-    }, loadTime);
-
   };
 
   popSweetAlert(fromDataList: string) {
@@ -169,43 +173,42 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     this.percentage = (this.numCorrect * 100)/40              //yoannes
 
 
-    if (fromDataList == 'harbor') {
-      if (this.numCorrect < 24) { // total of 40 words, 60% of 40 is 24 
-        var thisComp = this;
-        Swal.fire(
-          {
-            text: "You answered " + this.percentage + " % of the questions correctly. Please try up to 3 times in total to reach at least 60% of correctly answered questions",
-            showCancelButton: true,
-            cancelButtonText: "End Test",
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Continue Test'
-          }
-        ).then((result) => {
-          if (result.value) {
-            //win.location = "input-one"
-            this.router.navigate(['/app-lits-one']);
-            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-            //Asking the user to enter the Study ID to generate the file
-            this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
-              
-            //Go to the home page
-            this.router.navigate(['/pass-test']);
-            AppModule.globalVariable = ""
-          } 
-        });
-      }
-      else if (this.numCorrect >= 24) { 
-        Swal.fire(
-          {
-            text: "You answered " + this.percentage + " % out of 40 words, Test completed"
-          }
-        ).then(function () {
-          win.location = "pass-test";
-        });
-        this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
-      }
+    
+    if (this.numCorrect < 24) { // total of 40 words, 60% of 40 is 24 
+      var thisComp = this;
+      Swal.fire(
+        {
+          text: "You answered " + this.percentage + " % of the questions correctly. Please try up to 3 times in total to reach at least 60% of correctly answered questions",
+          showCancelButton: true,
+          cancelButtonText: "End Test",
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Continue Test'
+        }
+      ).then((result) => {
+        if (result.value) {
+          //win.location = "input-one"
+          this.router.navigate(['/app-lits-one']);
+          this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          //Asking the user to enter the Study ID to generate the file
+          this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+            
+          //Go to the home page
+          this.router.navigate(['/pass-test']);
+          AppModule.globalVariable = ""
+        } 
+      });
+    }
+    else if (this.numCorrect >= 24) { 
+      Swal.fire(
+        {
+          text: "You answered " + this.percentage + " % out of 40 words, Test completed"
+        }
+      ).then(function () {
+        win.location = "pass-test";
+      });
+      this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
     }
   }
 
