@@ -188,7 +188,9 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
       ).then((result) => {
         if (result.value) {
           //win.location = "input-one"
-          this.router.navigate(['/app-lits-one']);
+          this.router.navigate(['/task-message']);
+          // this.router.navigate(['/input-one']);
+          // this.router.navigate(['/app-lits-one']);
           this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           //Asking the user to enter the Study ID to generate the file
