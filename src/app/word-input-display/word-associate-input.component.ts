@@ -115,39 +115,22 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     // //delay the action for 5 seconds
 
     
-    if (myuserInput === '') {
-
+    if (myWord === myuserInput) {
+      // yoannes, checking time to print message if its evening
+      if (AppModule.trainigTesting == "training") {
+        this.correctMessage = "Correct answer"
+      }
+      this.numCorrect++;
+    }
+    else if (myuserInput != myWord) {
     //   // yoannes, checking time to print message if its
       if (AppModule.trainigTesting == "training") {
         this.errorMessage = "The correct word is " + myWord; 
       }
       this.numError++;
-    //   /*console.log("Correct:", this.numCorrect);
-    //   console.log("Error :", this.numError);
-    //   console.log("From data: ", fromDataList);*/
     }
 
-    else if (myuserInput != myWord) {
-
-    //   // yoannes, checking time to print message if its
-      if (AppModule.trainigTesting == "training") {
-        this.errorMessage = "INCORRECT!, not " + "'" + myuserInput + "'" + ", the correct word is " + myWord;
-      }
-     this.numError++;
-    //    /*console.log("Correct:", this.numCorrect);
-    //    console.log("Error :", this.numError);
-    //    console.log("From data: ", fromDataList);*/
-    }
-    else if (myWord === myuserInput) {
-    //   // yoannes, checking time to print message if its evening
-      if (AppModule.trainigTesting == "training") {
-        this.correctMessage = "Correct answer"
-      }
-      this.numCorrect++;
-    //   /*console.log("Correct:", this.numCorrect);
-    //   console.log("Error :", this.numError);
-    //   console.log("From data: ", fromDataList);*/
-    }
+    // Only progress if this is the last word
     if (fromDataList == 'harbor') {
       if(AppModule.trainigTesting == "testing"){
         this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
