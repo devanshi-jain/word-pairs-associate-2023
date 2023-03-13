@@ -151,10 +151,15 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
     this.popSweetAlert(fromDataList);
     
-    //Wait 5 seconds, then move to next word. 
+
+    //Wait then move to next word. 
+    let loadTime = 1000; // 1 second if testing
+    if (AppModule.trainigTesting == "training") {
+      loadTime = 5000; // 5 seconds if training
+    }
     setTimeout(() => {
       this.loadComponent();
-    }, 5000);
+    }, loadTime);
 
   };
 
