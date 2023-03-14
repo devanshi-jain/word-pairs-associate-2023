@@ -48,7 +48,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     this.inputElement = <HTMLInputElement>document.getElementById('userInputs');
     this.loadComponent();
     // this.getWordsInputOne();
-    myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
+    // myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   //Focus cursor in input box for each set of words
@@ -102,12 +102,13 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
 
+    myuserInput = myuserInput.trim();
     console.log(AppModule.trainigTesting);
 
     this.inputElement!.disabled = true;
 
     // //creating a list w the values given by the user
-    myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
+    // myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
     myUserInputList += myuserInput + ",";
 
     // //delay the action for 5 seconds
