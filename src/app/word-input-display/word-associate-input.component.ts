@@ -132,6 +132,9 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
     // Only progress if this is the last word
     if (fromDataList == 'harbor') {
+      this.numberCorrectPairs = this.numCorrect                 //yoannes
+      this.percentage = (this.numCorrect * 100)/40              //yoannes
+
       if(AppModule.trainigTesting == "testing"){
         this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
         this.router.navigate(['/pass-test']);
@@ -151,11 +154,6 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   };
 
   popSweetAlert(fromDataList: string) {
-
-    this.numberCorrectPairs = this.numCorrect                 //yoannes
-    this.percentage = (this.numCorrect * 100)/40              //yoannes
-
-
     
     if (this.numCorrect < 24) { // total of 40 words, 60% of 40 is 24 
       var thisComp = this;
@@ -166,7 +164,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
           cancelButtonText: "End Test",
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Continue Test'
+          confirmButtonText: 'Repeat Test'
         }
       ).then((result) => {
         if (result.value) {
