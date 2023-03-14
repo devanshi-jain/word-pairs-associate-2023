@@ -165,7 +165,8 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
           cancelButtonText: "End Test",
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Repeat Test'
+          confirmButtonText: 'Repeat Test',
+          allowOutsideClick: false
         }
       ).then((result) => {
         if (result.value) {
