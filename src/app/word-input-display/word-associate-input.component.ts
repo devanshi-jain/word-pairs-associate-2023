@@ -9,7 +9,6 @@ import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
 
 
-var   myUserInputList =  ""; //yoannes
 const win: Window = window;
 
 @Component({
@@ -19,6 +18,8 @@ const win: Window = window;
 export class WordAssociateInputComponent implements OnInit, WordComponent {
   @Input() wordsInput: AddWord[] = [];
   @Input() data: any;
+
+  myUserInputList: string =  ""; //yoannes
 
   correctWord: string = '';
   errorMessage: string = '';
@@ -109,7 +110,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
     // //creating a list w the values given by the user
     // myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
-    myUserInputList += myuserInput + ",";
+    this.myUserInputList += myuserInput + ",";
 
     // //delay the action for 5 seconds
 
@@ -200,7 +201,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
     /* Define the data */
     const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date',this.listOfPairs]
-    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, myUserInputList]];
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, this.myUserInputList]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */
