@@ -19,7 +19,6 @@ const win: Window = window;
 export class WordAssociateInputComponent implements OnInit, WordComponent {
   @Input() wordsInput: AddWord[] = [];
   @Input() data: any;
-  // inputForm!: FormGroup;
 
   correctWord: string = '';
   errorMessage: string = '';
@@ -30,7 +29,6 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   numberCorrectPairs = 0;
   percentage = 0;
   numberOfWords = 40;
-  // inputDisabled: boolean = false;
   inputElement: HTMLInputElement | undefined;
 
   current_date = new Date().toISOString(); 
