@@ -78,6 +78,6 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
   getWordsOne() {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 5500);// 5500 The words flash every 5.5 seconds yoannes time
+    }, 50);// 5500 The words flash every 5.5 seconds yoannes time
   }
 }
