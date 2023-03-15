@@ -134,7 +134,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     //Wait then move to next word. 
     let loadTime = 1000; // 1 second if testing
       if (AppModule.trainigTesting == "training") {
-        loadTime = .5000; // 5 seconds if training
+        loadTime = 5000; // 5 seconds if training
       }
       setTimeout(() => {
         // Only progress if this is the last word
