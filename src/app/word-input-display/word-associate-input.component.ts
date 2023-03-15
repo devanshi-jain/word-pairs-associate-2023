@@ -190,8 +190,8 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
         {
           text: "You answered " + this.percentage + " % out of 40 words, Test completed"
         }
-      ).then(function () {
-        win.location = "pass-test";
+      ).then( () => {
+        this.router.navigate(['/pass-test']);
       });
       this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
     }
