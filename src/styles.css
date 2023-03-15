@@ -82,15 +82,15 @@ input[type="text"] {
   font-family: Open Sans,Tahoma,Geneva,sans-serif;
   box-sizing: border-box;
     min-height: 2.1875rem;
-    *height: 1.5rem;
+    /* height: 1.5rem; */
     border: 0.0625rem;
     color: #fff;
-    *min-height: 0px;
+    /* min-height: 0px; */
     background-color: #227ab9;
     border-color: transparent;
     display: inline-block;
     padding: 6px 12px;
-    *padding: 0px 12px;
+    /* padding: 0px 12px; */
     line-height: 16px;
     white-space: nowrap;
     background-image: none;
@@ -100,8 +100,8 @@ input[type="text"] {
     color: #fff;
     text-align: center;
     min-height: 35px;
-    *min-height: 0px;
-    *height: 24px;
+    /* min-height: 0px; */
+    /* height: 24px; */
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -148,15 +148,15 @@ p{
   margin-left: -25px;
   box-sizing: border-box;
     min-height: 2.1875rem;
-    *height: 1.5rem;
+    /* height: 1.5rem; */
     border: 0.0625rem;
     color: #fff;
-    *min-height: 0px;
+    /* min-height: 0px; */
     background-color: #227ab9;
     border-color: transparent;
     display: inline-block;
     padding: 6px 12px;
-    *padding: 0px 12px;
+    /* padding: 0px 12px; */
     font-weight: 700;
     line-height: 16px;
     white-space: nowrap;
@@ -168,8 +168,8 @@ p{
     font-family: Open Sans, Tahoma, Geneva, sans-serif;
     text-align: center;
     min-height: 35px;
-    *min-height: 0px;
-    *height: 24px;
+    /* min-height: 0px; */
+    /* height: 24px; */
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -200,15 +200,15 @@ p{
   margin-left: -25px;
   box-sizing: border-box;
     min-height: 2.1875rem;
-    *height: 1.5rem;
+    /* height: 1.5rem; */
     border: 0.0625rem;
     color: #fff;
-    *min-height: 0px;
+    /* min-height: 0px; */
     background-color: #227ab9;
     border-color: transparent;
     display: inline-block;
     padding: 6px 12px;
-    *padding: 0px 12px;
+    /* padding: 0px 12px; */
     font-weight: 700;
     line-height: 16px;
     white-space: nowrap;
@@ -220,8 +220,8 @@ p{
     font-family: Open Sans, Tahoma, Geneva, sans-serif;
     text-align: center;
     min-height: 35px;
-    *min-height: 0px;
-    *height: 24px;
+    /* min-height: 0px; */
+    /* height: 24px; */
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -250,7 +250,7 @@ button:hover {
 input[type="text"]{
   margin-bottom: 25px;
   display:inline-flex;
-  *display: inline;     /* for IE7*/
+  /*display: inline;*/     /* for IE7*/
   zoom:1;              /* for IE7*/
   vertical-align:middle;
   margin-left:20px;
@@ -279,7 +279,7 @@ input[type="text"]{
 
 /*.form-match label {
   display:inline-block;
-  *display: inline;     /* for IE7*/
+  /*display: inline;*/     /* for IE7*/
   /*zoom:1;              /* for IE7*/
   /*padding-top: 5px;
   text-align: right;
