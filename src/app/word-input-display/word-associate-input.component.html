@@ -1,0 +1,25 @@
+<form class="form-match">
+  <h6>Please press ENTER after you type your word</h6>
+  <label class="message">{{currentWord}} - </label>
+  <!-- <input disable-on-enter id="userInputs"  -->
+  <input #userInputs disable-on-enter id="userInputs" 
+          type="text" spellcheck=true 
+          name="userInputs"
+
+          autocomplete="off"
+          (keyup.enter)="onEnter(currentWord,correctWord,userInputs.value.toLowerCase())" 
+          (click)="$event.stopPropagation()"
+          required
+          >
+   <span class="outputMessage" style="color: red; text-align: center;font-size: x-large;">
+    <div>{{errorMessage}}</div>
+   </span> 
+   <span class="correctMessage" style="color: blue; text-align: center;font-size: x-large;">
+    <div>{{correctMessage}}</div>
+   </span>
+</form>
+
+
+ 
+  
+  
