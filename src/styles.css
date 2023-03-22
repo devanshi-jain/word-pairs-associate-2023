@@ -107,6 +107,7 @@ input[type="text"] {
     -moz-border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+    appearance: none;
     -webkit-appearance: none;
     font-size: 14px;
     text-transform: uppercase;
@@ -175,6 +176,7 @@ p{
     -moz-border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+    appearance: none;
     -webkit-appearance: none;
     background-color: #227AB9;
     font-size: 14px;
@@ -227,6 +229,7 @@ p{
     -moz-border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+    appearance: none;
     -webkit-appearance: none;
     background-color: #227AB9;
     font-size: 14px;

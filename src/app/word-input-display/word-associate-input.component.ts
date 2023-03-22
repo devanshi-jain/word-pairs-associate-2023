@@ -101,7 +101,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
 
   //Funtion with condition for different scenarios
-  onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
+  onEnter(fromDataList: string = '', correctWord: string, myuserInput: string) {
 
     myuserInput = myuserInput.trim();
     console.log(AppModule.trainigTesting);
@@ -115,17 +115,17 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     // //delay the action for 5 seconds
 
     
-    if (myWord === myuserInput) {
+    if (correctWord.toLowerCase() === myuserInput.toLowerCase()) {
       // yoannes, checking time to print message if its evening
       if (AppModule.trainigTesting == "training") {
         this.correctMessage = "Correct answer"
       }
       this.numCorrect++;
     }
-    else if (myuserInput != myWord) {
+    else /* if (myuserInput != correctWord) */ {
     //   // yoannes, checking time to print message if its
       if (AppModule.trainigTesting == "training") {
-        this.errorMessage = "The correct word is " + myWord; 
+        this.errorMessage = "The correct word is " + correctWord; 
       }
       this.numError++;
     }
