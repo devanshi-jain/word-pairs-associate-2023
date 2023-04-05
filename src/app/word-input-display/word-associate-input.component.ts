@@ -89,7 +89,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
         if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
           this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
         }
-      }, 11000, this.currentWord);
+      }, 10000, this.currentWord);
     }
   }
   //set the interval to minutes 
