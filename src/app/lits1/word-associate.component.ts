@@ -11,7 +11,7 @@ import { AppModule } from '../app.module'; // yoannes
   <div>
   <ng-template wordHost></ng-template>
   <div class="next_btn_wrap">
-    <button class="next_btn" 
+    <button class="next_btn next_btn_hides" 
     [disabled]="nextClick" 
     [routerLink]="['/task-message']" href="">Next</button>
 </div>
