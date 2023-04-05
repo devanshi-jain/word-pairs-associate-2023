@@ -10,6 +10,7 @@ import { WordAssociateComponent } from './lits1/word-associate.component';
 import { WordsDisplayComponent } from './lits1/words-display.component'; 
 import { MessagePageComponent } from './message-page/message-page.component';
 import { TaskMessageComponent } from './task-message/task-message.component';
+import { TaskMessageTestingComponent } from './task-message/task-message-testing.component';
 
 import { WordDirective } from './word.directive';
 import { WordService } from './word.service'; 
@@ -78,6 +79,7 @@ import { Injectable } from '@angular/core';
     WordListThreeComponent,
     WordListFiveComponent,
     TaskMessageComponent,
+    TaskMessageTestingComponent,
     TaskMessageThreeComponent,
     TaskMessageFiveComponent,
     WordInputDisplayComponent,
