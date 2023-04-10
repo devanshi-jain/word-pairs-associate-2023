@@ -145,7 +145,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     else /* if (myuserInput != correctWord) */ {
     //   // yoannes, checking time to print message if its
       if (AppModule.trainigTesting == "training") {
-        this.errorMessage = "The correct word is " + correctWord; 
+        this.errorMessage = "The correct word is <b>" + correctWord+"</b>"; 
       }
       this.numError++;
     }
