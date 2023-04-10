@@ -12,6 +12,7 @@ const win: Window = window; //yoannes
 })
 export class MessagePageComponent implements OnInit {
 
+  hideMessage = true;
   // constructor() { }
     //constructor() { }
   //yoannes Inject the class in the components where you want to access the global variable:
@@ -75,6 +76,7 @@ export class MessagePageComponent implements OnInit {
         if (result.value) {
             // do nothing stay in testing evening
             AppModule.trainigTesting = "training";
+            this.hideMessage = false;
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           
           //Go to the task page
