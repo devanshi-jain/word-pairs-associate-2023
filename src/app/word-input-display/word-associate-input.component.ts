@@ -32,7 +32,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   numberOfWords = 40;
   inputElement: HTMLInputElement | undefined;
 
-  current_date = new Date().toISOString(); 
+  current_date = this.getISOStringWithTimezone(); 
   listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
 
 
@@ -62,6 +62,26 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   ngAfterViewInit() {
     this.focus_element.nativeElement.focus();
   }
+
+  // Time solution for iso formath with locale timezone 
+  // taken from https://www.30secondsofcode.org/js/s/to-iso-string-with-timezone/
+  pad (n: number) {
+    return `${Math.floor(Math.abs(n))}`.padStart(2, '0')
+  };
+  getISOStringWithTimezone () {
+    let date = new Date();
+    let tzOffset = -date.getTimezoneOffset();
+    let diff = tzOffset >= 0 ? '+' : '-';
+    let pad = this.pad;
+    return date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      'T' + pad(date.getHours()) +
+      ':' + pad(date.getMinutes()) +
+      ':' + pad(date.getSeconds()) +
+      diff + pad(tzOffset / 60) //+
+      // ':' + pad(tzOffset % 60); // Removing milliseconds upon request
+  };
 
   loadComponent() {
     if (this.counter < this.wordsInput.length) {
