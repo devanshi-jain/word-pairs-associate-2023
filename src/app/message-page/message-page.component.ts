@@ -34,7 +34,7 @@ export class MessagePageComponent implements OnInit {
       Swal.fire({
         title: 'Enter Study ID',
         input: 'text',
-        width: 700,
+        width: 'auto',
         padding: 50,
         allowEscapeKey: false,
         inputAttributes: {
@@ -42,6 +42,7 @@ export class MessagePageComponent implements OnInit {
         },
         showCancelButton: false,
         confirmButtonText: 'Submit',
+        confirmButtonColor: '#3085d6',
         showLoaderOnConfirm: true,
         preConfirm: (inputValue) => {
           if (!inputValue) {
@@ -53,7 +54,8 @@ export class MessagePageComponent implements OnInit {
             this.popSweetAlertSelection()
           }
         },
-        allowOutsideClick: () => !Swal.isLoading()
+        // allowOutsideClick: () => !Swal.isLoading(),
+        allowOutsideClick: false
       })
     } 
 
@@ -67,10 +69,11 @@ export class MessagePageComponent implements OnInit {
           showCancelButton: true,
           cancelButtonText: "Testing (morning)",
           confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#3085d6',
+          cancelButtonColor: '#4caf50',
           width: 700,
           padding: 100,
-          confirmButtonText: 'Training (evening)'
+          confirmButtonText: 'Training (evening)',
+          allowOutsideClick: false
         }
       ).then((result) => {
         if (result.value) {
