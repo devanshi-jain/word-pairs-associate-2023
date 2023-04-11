@@ -4,7 +4,7 @@ import { WordComponent } from '../word.component';
 @Component({
   template: `
     <div class="list-display">
-      <p>{{data.listone}} - {{data.listonesec}}</p> 
+      <p>{{data.prompt}} - {{data.answer}}</p> 
     </div>
   `
 })

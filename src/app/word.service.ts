@@ -7,169 +7,278 @@ import { WordListInputOneComponent } from './word-input-display/word-list-input-
 import { WordListInputThreeComponent } from './word-input-display-three/word-list-input-three.component';
 import { WordListInputFiveComponent } from './word-input-display-five/word-list-input-five.component';
 
+
+// interface wordList {
+//   [key: string]: object
+// }
+
 @Injectable({ providedIn: 'root' })
 export class WordService {
+
+  private lists :any = [];
+  
+
+  constructor() {
+    this.lists['one'] = [
+      { prompt: 'tower', answer: 'bell' },
+      { prompt: 'sea', answer: 'tide' },
+      { prompt: 'newspaper', answer: 'interview' },
+      { prompt: 'sonata', answer: 'joy' },
+      { prompt: 'banner', answer: 'camp' },
+      { prompt: 'tendency', answer: 'increment' },
+      { prompt: 'mother', answer: 'child' },
+      { prompt: 'insect', answer: 'caterpillar' },
+      { prompt: 'river', answer: 'ship' },
+      { prompt: 'coast', answer: 'beach' },
+      { prompt: 'gun', answer: 'bullet' },
+      { prompt: 'blacksmith', answer: 'metal' },
+      { prompt: 'home', answer: 'room' },
+      { prompt: 'building', answer: 'hall' },
+      { prompt: 'rain', answer: 'flood' },
+      { prompt: 'avenue', answer: 'tree' },
+      { prompt: 'decency', answer: 'truth' },
+      { prompt: 'decree', answer: 'decision' },
+      { prompt: 'diamond', answer: 'hardness' },
+      { prompt: 'result', answer: 'effect' },
+      { prompt: 'occupation', answer: 'doctor' },
+      { prompt: 'book', answer: 'story' },
+      { prompt: 'attack', answer: 'operation' },
+      { prompt: 'cat', answer: 'soul' },
+      { prompt: 'doll', answer: 'cradle' },
+      { prompt: 'episode', answer: 'happiness' },
+      { prompt: 'railroad', answer: 'steam' },
+      { prompt: 'kitchen', answer: 'pot' },
+      { prompt: 'countryside', answer: 'swamp' },
+      { prompt: 'musician', answer: 'pianist' },
+      { prompt: 'industry', answer: 'factory' },
+      { prompt: 'clothing', answer: 'scarf' },
+      { prompt: 'car', answer: 'headlight' },
+      { prompt: 'gale', answer: 'wind' },
+      { prompt: 'bouquet', answer: 'blossom' },
+      { prompt: 'bottle', answer: 'toast' },
+      { prompt: 'group', answer: 'person' },
+      { prompt: 'crisis', answer: 'emergency' },
+      { prompt: 'girl', answer: 'engagement' },
+      { prompt: 'harbor', answer: 'crane' }
+    ];
+
+    this.lists['five'] = [
+      { prompt: 'power', answer: 'ruler' },
+      { prompt: 'butterfly', answer: 'bloom' },
+      { prompt: 'dream', answer: 'reality' },
+      { prompt: 'language', answer: 'acoustic' },
+      { prompt: 'examiner', answer: 'failure' },
+      { prompt: 'coach', answer: 'horse' },
+      { prompt: 'animal', answer: 'frog' },
+      { prompt: 'demand', answer: 'difficulty' },
+      { prompt: 'question', answer: 'objection' },
+      { prompt: 'grass', answer: 'cattle' },
+      { prompt: 'decency', answer: 'custom' },
+      { prompt: 'welcoming', answer: 'kindness' },
+      { prompt: 'criticism', answer: 'doubt' },
+      { prompt: 'friend', answer: 'trust' },
+      { prompt: 'pardon', answer: 'mercy' },
+      { prompt: 'loss', answer: 'removal' },
+      { prompt: 'destiny', answer: 'irony' },
+      { prompt: 'mountain', answer: 'cabin' },
+      { prompt: 'ghost', answer: 'appearance' },
+      { prompt: 'barrel', answer: 'basement' },
+      { prompt: 'marriage', answer: 'engagement' },
+      { prompt: 'swell', answer: 'steamship' },
+      { prompt: 'discipline', answer: 'obedience' },
+      { prompt: 'painter', answer: 'pianist' },
+      { prompt: 'analysis', answer: 'result' },
+      { prompt: 'veiling', answer: 'headscarf' },
+      { prompt: 'nephew', answer: 'grandmother' },
+      { prompt: 'redemption', answer: 'heaven' },
+      { prompt: 'growth', answer: 'progress' },
+      { prompt: 'look', answer: 'perspective' },
+      { prompt: 'twilight', answer: 'dawn' },
+      { prompt: 'illusion', answer: 'perception' },
+      { prompt: 'comedy', answer: 'drama' },
+      { prompt: 'clock', answer: 'church' },
+      { prompt: 'bungalow', answer: 'settlement' },
+      { prompt: 'firmness', answer: 'strength' },
+      { prompt: 'criterion', answer: 'selection' },
+      { prompt: 'valley', answer: 'meadow' },
+      { prompt: 'skin', answer: 'blood' },
+      { prompt: 'garden', answer: 'flowerbed' }
+    ];
+  }
+
+  getWordList(listName : any) {
+    return this.lists[listName];
+  }
+
+  getWords(listName : any) {
+    let listObject: AddWord[] = [];
+    this.lists[listName].forEach((element: any) => {
+      listObject.push(new AddWord(WordListComponent,element));
+    });
+    return listObject;
+  }
+
   getWordsOne() {
     return [
       new AddWord(
         WordListComponent,
-        { listone: 'tower', listonesec: 'bell' }
+        { prompt: 'tower', answer: 'bell' }
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'sea', listonesec: 'tide' }
+        { prompt: 'sea', answer: 'tide' }
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'newspaper', listonesec: 'interview' },
+        { prompt: 'newspaper', answer: 'interview' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'sonata', listonesec: 'joy' },
+        { prompt: 'sonata', answer: 'joy' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'banner', listonesec: 'camp' },
+        { prompt: 'banner', answer: 'camp' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'tendency', listonesec: 'increment' },
+        { prompt: 'tendency', answer: 'increment' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'mother', listonesec: 'child' },
+        { prompt: 'mother', answer: 'child' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'insect', listonesec: 'caterpillar' },
+        { prompt: 'insect', answer: 'caterpillar' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'river', listonesec: 'ship' },
+        { prompt: 'river', answer: 'ship' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'coast', listonesec: 'beach' },
+        { prompt: 'coast', answer: 'beach' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'gun', listonesec: 'bullet' },
+        { prompt: 'gun', answer: 'bullet' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'blacksmith', listonesec: 'metal' },
+        { prompt: 'blacksmith', answer: 'metal' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'home', listonesec: 'room' },
+        { prompt: 'home', answer: 'room' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'building', listonesec: 'hall' },
+        { prompt: 'building', answer: 'hall' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'rain', listonesec: 'flood' },
+        { prompt: 'rain', answer: 'flood' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'avenue', listonesec: 'tree' },
+        { prompt: 'avenue', answer: 'tree' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'decency', listonesec: 'truth' },
+        { prompt: 'decency', answer: 'truth' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'decree', listonesec: 'decision' },
+        { prompt: 'decree', answer: 'decision' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'diamond', listonesec: 'hardness' },
+        { prompt: 'diamond', answer: 'hardness' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'result', listonesec: 'effect' },
+        { prompt: 'result', answer: 'effect' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'occupation', listonesec: 'doctor' },
+        { prompt: 'occupation', answer: 'doctor' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'book', listonesec: 'story' },
+        { prompt: 'book', answer: 'story' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'attack', listonesec: 'operation' },
+        { prompt: 'attack', answer: 'operation' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'cat', listonesec: 'soul' },
+        { prompt: 'cat', answer: 'soul' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'doll', listonesec: 'cradle' },
+        { prompt: 'doll', answer: 'cradle' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'episode', listonesec: 'happiness' },
+        { prompt: 'episode', answer: 'happiness' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'railroad', listonesec: 'steam' },
+        { prompt: 'railroad', answer: 'steam' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'kitchen', listonesec: 'pot' },
+        { prompt: 'kitchen', answer: 'pot' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'countryside', listonesec: 'swamp' },
+        { prompt: 'countryside', answer: 'swamp' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'musician', listonesec: 'pianist' },
+        { prompt: 'musician', answer: 'pianist' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'industry', listonesec: 'factory' },
+        { prompt: 'industry', answer: 'factory' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'clothing', listonesec: 'scarf' },
+        { prompt: 'clothing', answer: 'scarf' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'car', listonesec: 'headlight' },
+        { prompt: 'car', answer: 'headlight' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'gale', listonesec: 'wind' },
+        { prompt: 'gale', answer: 'wind' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'bouquet', listonesec: 'blossom' },
+        { prompt: 'bouquet', answer: 'blossom' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'bottle', listonesec: 'toast' },
+        { prompt: 'bottle', answer: 'toast' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'group', listonesec: 'person' },
+        { prompt: 'group', answer: 'person' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'crisis', listonesec: 'emergency' },
+        { prompt: 'crisis', answer: 'emergency' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'girl', listonesec: 'engagement' },
+        { prompt: 'girl', answer: 'engagement' },
       ),
       new AddWord(
         WordListComponent,
-        { listone: 'harbor', listonesec: 'crane' },
+        { prompt: 'harbor', answer: 'crane' },
       
       ),
     ];
@@ -179,163 +288,163 @@ export class WordService {
     return [
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'tower', listonesec: 'bell' }
+        { prompt: 'tower', answer: 'bell' }
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'sea', listonesec: 'tide' }
+        { prompt: 'sea', answer: 'tide' }
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'newspaper', listonesec: 'interview' },
+        { prompt: 'newspaper', answer: 'interview' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'sonata', listonesec: 'joy' },
+        { prompt: 'sonata', answer: 'joy' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'banner', listonesec: 'camp' },
+        { prompt: 'banner', answer: 'camp' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'tendency', listonesec: 'increment' },
+        { prompt: 'tendency', answer: 'increment' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'mother', listonesec: 'child' },
+        { prompt: 'mother', answer: 'child' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'insect', listonesec: 'caterpillar' },
+        { prompt: 'insect', answer: 'caterpillar' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'river', listonesec: 'ship' },
+        { prompt: 'river', answer: 'ship' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'coast', listonesec: 'beach' },
+        { prompt: 'coast', answer: 'beach' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'gun', listonesec: 'bullet' },
+        { prompt: 'gun', answer: 'bullet' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'blacksmith', listonesec: 'metal' },
+        { prompt: 'blacksmith', answer: 'metal' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'home', listonesec: 'room' },
+        { prompt: 'home', answer: 'room' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'building', listonesec: 'hall' },
+        { prompt: 'building', answer: 'hall' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'rain', listonesec: 'flood' },
+        { prompt: 'rain', answer: 'flood' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'avenue', listonesec: 'tree' },
+        { prompt: 'avenue', answer: 'tree' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'decency', listonesec: 'truth' },
+        { prompt: 'decency', answer: 'truth' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'decree', listonesec: 'decision' },
+        { prompt: 'decree', answer: 'decision' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'diamond', listonesec: 'hardness' },
+        { prompt: 'diamond', answer: 'hardness' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'result', listonesec: 'effect' },
+        { prompt: 'result', answer: 'effect' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'occupation', listonesec: 'doctor' },
+        { prompt: 'occupation', answer: 'doctor' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'book', listonesec: 'story' },
+        { prompt: 'book', answer: 'story' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'attack', listonesec: 'operation' },
+        { prompt: 'attack', answer: 'operation' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'cat', listonesec: 'soul' },
+        { prompt: 'cat', answer: 'soul' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'doll', listonesec: 'cradle' },
+        { prompt: 'doll', answer: 'cradle' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'episode', listonesec: 'happiness' },
+        { prompt: 'episode', answer: 'happiness' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'railroad', listonesec: 'steam' },
+        { prompt: 'railroad', answer: 'steam' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'kitchen', listonesec: 'pot' },
+        { prompt: 'kitchen', answer: 'pot' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'countryside', listonesec: 'swamp' },
+        { prompt: 'countryside', answer: 'swamp' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'musician', listonesec: 'pianist' },
+        { prompt: 'musician', answer: 'pianist' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'industry', listonesec: 'factory' },
+        { prompt: 'industry', answer: 'factory' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'clothing', listonesec: 'scarf' },
+        { prompt: 'clothing', answer: 'scarf' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'car', listonesec: 'headlight' },
+        { prompt: 'car', answer: 'headlight' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'gale', listonesec: 'wind' },
+        { prompt: 'gale', answer: 'wind' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'bouquet', listonesec: 'blossom' },
+        { prompt: 'bouquet', answer: 'blossom' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'bottle', listonesec: 'toast' },
+        { prompt: 'bottle', answer: 'toast' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'group', listonesec: 'person' },
+        { prompt: 'group', answer: 'person' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'crisis', listonesec: 'emergency' },
+        { prompt: 'crisis', answer: 'emergency' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'girl', listonesec: 'engagement' },
+        { prompt: 'girl', answer: 'engagement' },
       ),
       new AddWord(
         WordListInputOneComponent,
-        { listone: 'harbor', listonesec: 'crane' },
+        { prompt: 'harbor', answer: 'crane' },
       
       )
     ];
@@ -675,163 +784,163 @@ export class WordService {
     return [
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'power', listfivesec: 'ruler' }
+        { prompt: 'power', answer: 'ruler' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'butterfly', listfivesec: 'bloom' }
+        { prompt: 'butterfly', answer: 'bloom' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'dream', listfivesec: 'reality' }
+        { prompt: 'dream', answer: 'reality' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'language', listfivesec: 'acoustic' }
+        { prompt: 'language', answer: 'acoustic' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'examiner', listfivesec: 'failure' }
+        { prompt: 'examiner', answer: 'failure' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'coach', listfivesec: 'horse' }
+        { prompt: 'coach', answer: 'horse' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'animal', listfivesec: 'frog' }
+        { prompt: 'animal', answer: 'frog' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'demand', listfivesec: 'difficulty' }
+        { prompt: 'demand', answer: 'difficulty' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'question', listfivesec: 'objection' }
+        { prompt: 'question', answer: 'objection' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'grass', listfivesec: 'cattle' }
+        { prompt: 'grass', answer: 'cattle' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'decency', listfivesec: 'custom' }
+        { prompt: 'decency', answer: 'custom' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'welcoming', listfivesec: 'kindness' }
+        { prompt: 'welcoming', answer: 'kindness' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'criticism', listfivesec: 'doubt' }
+        { prompt: 'criticism', answer: 'doubt' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'friend', listfivesec: 'trust' }
+        { prompt: 'friend', answer: 'trust' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'pardon', listfivesec: 'mercy' }
+        { prompt: 'pardon', answer: 'mercy' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'loss', listfivesec: 'removal' }
+        { prompt: 'loss', answer: 'removal' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'destiny', listfivesec: 'irony' }
+        { prompt: 'destiny', answer: 'irony' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'mountain', listfivesec: 'cabin' }
+        { prompt: 'mountain', answer: 'cabin' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'ghost', listfivesec: 'appearance' }
+        { prompt: 'ghost', answer: 'appearance' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'barrel', listfivesec: 'basement' }
+        { prompt: 'barrel', answer: 'basement' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'marriage', listfivesec: 'engagement' }
+        { prompt: 'marriage', answer: 'engagement' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'swell', listfivesec: 'steamship' }
+        { prompt: 'swell', answer: 'steamship' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'discipline', listfivesec: 'obedience' }
+        { prompt: 'discipline', answer: 'obedience' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'painter', listfivesec: 'pianist' }
+        { prompt: 'painter', answer: 'pianist' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'analysis', listfivesec: 'result' }
+        { prompt: 'analysis', answer: 'result' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'veiling', listfivesec: 'headscarf' }
+        { prompt: 'veiling', answer: 'headscarf' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'nephew', listfivesec: 'grandmother' }
+        { prompt: 'nephew', answer: 'grandmother' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'redemption', listfivesec: 'heaven' }
+        { prompt: 'redemption', answer: 'heaven' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'growth', listfivesec: 'progress' }
+        { prompt: 'growth', answer: 'progress' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'look', listfivesec: 'perspective' }
+        { prompt: 'look', answer: 'perspective' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'twilight', listfivesec: 'dawn' }
+        { prompt: 'twilight', answer: 'dawn' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'illusion', listfivesec: 'perception' }
+        { prompt: 'illusion', answer: 'perception' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'comedy', listfivesec: 'drama' }
+        { prompt: 'comedy', answer: 'drama' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'clock', listfivesec: 'church' }
+        { prompt: 'clock', answer: 'church' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'bungalow', listfivesec: 'settlement' }
+        { prompt: 'bungalow', answer: 'settlement' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'firmness', listfivesec: 'strength' }
+        { prompt: 'firmness', answer: 'strength' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'criterion', listfivesec: 'selection' }
+        { prompt: 'criterion', answer: 'selection' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'valley', listfivesec: 'meadow' }
+        { prompt: 'valley', answer: 'meadow' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'skin', listfivesec: 'blood' }
+        { prompt: 'skin', answer: 'blood' }
       ),
       new AddWord(
         WordListFiveComponent,
-        { listfive: 'garden', listfivesec: 'flowerbed' },
+        { prompt: 'garden', answer: 'flowerbed' },
       )
     ];
   }
@@ -840,163 +949,163 @@ export class WordService {
     return [
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'power', listfivesec: 'ruler' }
+        { prompt: 'power', answer: 'ruler' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'butterfly', listfivesec: 'bloom' }
+        { prompt: 'butterfly', answer: 'bloom' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'dream', listfivesec: 'reality' }
+        { prompt: 'dream', answer: 'reality' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'language', listfivesec: 'acoustic' }
+        { prompt: 'language', answer: 'acoustic' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'examiner', listfivesec: 'failure' }
+        { prompt: 'examiner', answer: 'failure' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'coach', listfivesec: 'horse' }
+        { prompt: 'coach', answer: 'horse' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'animal', listfivesec: 'frog' }
+        { prompt: 'animal', answer: 'frog' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'demand', listfivesec: 'difficulty' }
+        { prompt: 'demand', answer: 'difficulty' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'question', listfivesec: 'objection' }
+        { prompt: 'question', answer: 'objection' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'grass', listfivesec: 'cattle' }
+        { prompt: 'grass', answer: 'cattle' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'decency', listfivesec: 'custom' }
+        { prompt: 'decency', answer: 'custom' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'welcoming', listfivesec: 'kindness' }
+        { prompt: 'welcoming', answer: 'kindness' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'criticism', listfivesec: 'doubt' }
+        { prompt: 'criticism', answer: 'doubt' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'friend', listfivesec: 'trust' }
+        { prompt: 'friend', answer: 'trust' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'pardon', listfivesec: 'mercy' }
+        { prompt: 'pardon', answer: 'mercy' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'loss', listfivesec: 'removal' }
+        { prompt: 'loss', answer: 'removal' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'destiny', listfivesec: 'irony' }
+        { prompt: 'destiny', answer: 'irony' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'mountain', listfivesec: 'cabin' }
+        { prompt: 'mountain', answer: 'cabin' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'ghost', listfivesec: 'appearance' }
+        { prompt: 'ghost', answer: 'appearance' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'barrel', listfivesec: 'basement' }
+        { prompt: 'barrel', answer: 'basement' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'marriage', listfivesec: 'engagement' }
+        { prompt: 'marriage', answer: 'engagement' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'swell', listfivesec: 'steamship' }
+        { prompt: 'swell', answer: 'steamship' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'discipline', listfivesec: 'obedience' }
+        { prompt: 'discipline', answer: 'obedience' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'painter', listfivesec: 'pianist' }
+        { prompt: 'painter', answer: 'pianist' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'analysis', listfivesec: 'result' }
+        { prompt: 'analysis', answer: 'result' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'veiling', listfivesec: 'headscarf' }
+        { prompt: 'veiling', answer: 'headscarf' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'nephew', listfivesec: 'grandmother' }
+        { prompt: 'nephew', answer: 'grandmother' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'redemption', listfivesec: 'heaven' }
+        { prompt: 'redemption', answer: 'heaven' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'growth', listfivesec: 'progress' }
+        { prompt: 'growth', answer: 'progress' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'look', listfivesec: 'perspective' }
+        { prompt: 'look', answer: 'perspective' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'twilight', listfivesec: 'dawn' }
+        { prompt: 'twilight', answer: 'dawn' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'illusion', listfivesec: 'perception' }
+        { prompt: 'illusion', answer: 'perception' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'comedy', listfivesec: 'drama' }
+        { prompt: 'comedy', answer: 'drama' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'clock', listfivesec: 'church' }
+        { prompt: 'clock', answer: 'church' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'bungalow', listfivesec: 'settlement' }
+        { prompt: 'bungalow', answer: 'settlement' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'firmness', listfivesec: 'strength' }
+        { prompt: 'firmness', answer: 'strength' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'criterion', listfivesec: 'selection' }
+        { prompt: 'criterion', answer: 'selection' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'valley', listfivesec: 'meadow' }
+        { prompt: 'valley', answer: 'meadow' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'skin', listfivesec: 'blood' }
+        { prompt: 'skin', answer: 'blood' }
       ),
       new AddWord(
         WordListInputFiveComponent,
-        { listfive: 'garden', listfivesec: 'flowerbed' },
+        { prompt: 'garden', answer: 'flowerbed' },
       )
     ];
   }

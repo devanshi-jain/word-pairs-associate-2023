@@ -7,6 +7,7 @@ import { WordDirective } from '../word.directive';
 import { Router } from '@angular/router';
 import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
+import { WordService } from '../word.service';
 
 
 const win: Window = window;
@@ -15,9 +16,10 @@ const win: Window = window;
   selector: 'app-word-associate-input',
   templateUrl: './word-associate-input.component.html',
 })
-export class WordAssociateInputComponent implements OnInit, WordComponent {
-  @Input() wordsInput: AddWord[] = [];
-  @Input() data: any;
+export class WordAssociateInputComponent implements OnInit{
+  // @Input() wordsInput: AddWord[] = [];
+  // @Input() data: any;
+  wordsInput: any[] = [];
 
   myUserInputList: string =  ""; //yoannes
 
@@ -33,10 +35,13 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   inputElement: HTMLInputElement | undefined;
 
   current_date = this.getISOStringWithTimezone(); 
-  listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
+  // listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
+  listOfPairs = '';
+  // wordsInputToHeaderStr () {
+    
+  // }
 
-
-  constructor(private router: Router,private globalService: AppModule){}
+  constructor(private router: Router,private globalService: AppModule,private wordService: WordService){}
 
   currentAdIndex = -1;
   counter = 0;
@@ -46,6 +51,13 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   interval: number | any;
 
   ngOnInit(): void {
+    this.wordsInput = this.wordService.getWordList(AppModule.listName);
+    this.wordsInput.forEach(element => {
+      this.listOfPairs += element.prompt + ' - ' + element.answer + ',';
+    });
+    // Remove trailing comma
+    this.listOfPairs = this.listOfPairs.replace(/,\s*$/, "");
+
     this.inputElement = <HTMLInputElement>document.getElementById('userInputs');
     this.loadComponent();
     // this.getWordsInputOne();
@@ -93,8 +105,8 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
       this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
       const addWordInput = this.wordsInput[this.currentAdIndex];
-      this.currentWord = addWordInput.data.listone;
-      this.correctWord = addWordInput.data.listonesec;
+      this.currentWord = addWordInput.prompt;
+      this.correctWord = addWordInput.answer;
       
       // const viewContainerRef = this.wordHost.viewContainerRef;
       // viewContainerRef.clear();
@@ -158,7 +170,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
       }
       setTimeout(() => {
         // Only progress if this is the last word
-      if (fromDataList == 'harbor') {
+      if (this.currentAdIndex +1 == this.wordsInput.length) {
         this.numberCorrectPairs = this.numCorrect                 //yoannes
         this.percentage = (this.numCorrect * 100)/40              //yoannes
 

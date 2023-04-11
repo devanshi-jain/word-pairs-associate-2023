@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
-import { Router } from '@angular/router'; // yoannes using route to navigate between pages without affecting my global variables values
+import { ActivatedRoute, Router } from '@angular/router'; // yoannes using route to navigate between pages without affecting my global variables values
 
 const win: Window = window; //yoannes
 
@@ -13,10 +13,11 @@ const win: Window = window; //yoannes
 export class MessagePageComponent implements OnInit {
 
   hideMessage = true;
+  listName : any = '';
   // constructor() { }
     //constructor() { }
   //yoannes Inject the class in the components where you want to access the global variable:
-  constructor(private globalService: AppModule, private router: Router) {}
+  constructor(private globalService: AppModule, private router: Router, private route: ActivatedRoute) {}
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
@@ -26,6 +27,8 @@ export class MessagePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputStudyId();  //yoannes
+    this.listName = this.route.snapshot.paramMap.get('id');
+    AppModule.listName = this.listName;
   }
   
   

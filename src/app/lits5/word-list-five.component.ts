@@ -5,7 +5,7 @@ import { WordComponent } from '../word.component';
   selector: 'app-word-list-five',
   template: `
     <div class="list-display">
-      <p>{{data.listfive}} - {{data.listfivesec}}</p> 
+      <p>{{data.prompt}} - {{data.answer}}</p> 
     </div>
   `
 })

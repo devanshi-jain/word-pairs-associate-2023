@@ -1,11 +1,11 @@
 <form [formGroup]="inputForm " class="form-match">
     <h6>Please press ENTER after you type your word</h6>
-    <label class="message">{{data.listfive}} - </label>
+    <label class="message">{{data.prompt}} - </label>
     <input disable-on-enter id="userInputs" 
             type="text" spellcheck=true 
             name="userInputs"
             autocomplete="off"
-            (keyup.enter)="onEnter(data.listfive,data.listfivesec,userInputs.value.toLowerCase())" 
+            (keyup.enter)="onEnter(data.prompt,data.answer,userInputs.value.toLowerCase())" 
             (click)="$event.stopPropagation()"
             #userInputs>
      <span class="outputMessage" style="color: red; text-align: center; font-size: x-large;">

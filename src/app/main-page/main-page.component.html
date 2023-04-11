@@ -6,14 +6,15 @@
         <ul class="main-content-nav">
           <ol>
             <h2>
-              <a routerLink="app-lits-one" routerLinkActive="active">List One</a>
+              <!-- <a [routerLink]="['app-lits','one']" routerLinkActive="active">List One</a> -->
+              <a [routerLink]="['app-message-page','one']" routerLinkActive="active">List One</a>
             </h2>
           </ol>
           <ol>
             <h2><a routerLink="app-lits-three" routerLinkActive="active">List Three</a></h2>
           </ol>
           <ol>
-            <h2><a routerLink="app-list-five" routerLinkActive="active">List Five</a></h2>
+            <h2><a [routerLink]="['app-message-page','five']" routerLinkActive="active">List Five</a></h2>
           </ol>
         </ul>
       </nav>

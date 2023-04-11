@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { WordAssociateComponent } from './lits1/word-associate.component'; 
-import { WordsDisplayComponent } from './lits1/words-display.component'; 
 import { MessagePageComponent } from './message-page/message-page.component';
 import { TaskMessageComponent } from './task-message/task-message.component';
 import { TaskMessageTestingComponent } from './task-message/task-message-testing.component';
 
 import { WordDirective } from './word.directive';
 import { WordService } from './word.service'; 
-import { Lits1Component } from './lits1/lits1.component';
 import { Lits3Component } from './lits3/lits3.component';
 import { Lits5Component } from './lits5/lits5.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -34,7 +32,6 @@ import { WordInputDisplayThreeComponent } from './word-input-display-three/word-
 import { WordAssociateInputThreeComponent } from './word-input-display-three/word-associate-input-three.component';
 import { WordInputDisplayFiveComponent } from './word-input-display-five/word-input-display-five.component';
 import { WordAssociateInputFiveComponent } from './word-input-display-five/word-associate-input-five.component';
-import { WordListInputOneComponent } from './word-input-display/word-list-input-one.component';
 import { CommonModule } from '@angular/common';
 import { DisableOnEnterDirective } from './disable-on-enter.directive';
 import { FailTestComponent } from './fail-test.component'; 
@@ -63,10 +60,8 @@ import { Injectable } from '@angular/core';
   declarations: [
     AppComponent, 
     WordAssociateComponent,
-    WordsDisplayComponent,
     MessagePageComponent,
     WordDirective,
-    Lits1Component,
     Lits3Component,
     Lits5Component,
     MainPageComponent,
@@ -88,7 +83,6 @@ import { Injectable } from '@angular/core';
     WordAssociateInputThreeComponent,
     WordInputDisplayFiveComponent,
     WordAssociateInputFiveComponent,
-    WordListInputOneComponent,
     DisableOnEnterDirective,
     FailTestComponent,
     PassTestComponent,
@@ -103,5 +97,6 @@ export class AppModule {
   //yoannes static property that will be your global variable:
   static globalVariable: any;
   static trainigTesting: any;
+  static listName: any;
 }
 
