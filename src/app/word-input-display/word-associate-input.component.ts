@@ -21,8 +21,6 @@ export class WordAssociateInputComponent implements OnInit{
   // @Input() data: any;
   wordsInput: any[] = [];
 
-  myUserInputList: string =  ""; //yoannes
-
   correctWord: string = '';
   errorMessage: string = '';
   correctMessage: string = '';
@@ -37,13 +35,15 @@ export class WordAssociateInputComponent implements OnInit{
   current_date = this.getISOStringWithTimezone(); 
   // listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
   listOfPairs = '';
+  indexArray: number[] = [];
+  answerArray: string[] = [];
   // wordsInputToHeaderStr () {
     
   // }
 
   constructor(private router: Router,private globalService: AppModule,private wordService: WordService){}
 
-  currentAdIndex = -1;
+  currentWordIndex = -1;
   counter = 0;
 
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
@@ -52,6 +52,11 @@ export class WordAssociateInputComponent implements OnInit{
 
   ngOnInit(): void {
     this.wordsInput = this.wordService.getWordList(AppModule.listName);
+    this.numberOfWords = this.wordsInput.length
+    // TODO use this array to choose index of word-pair to present. 
+    // Also need to create an answers array, and fill that by index to have answers recorded in the original order. 
+    // Then update csv code to use the answers array, and to make a cell for storing the order presented to subject
+    this.indexArray = Array.from({length:this.numberOfWords},(value,index)=>index).sort(() => Math.random() - 0.5);
     this.wordsInput.forEach(element => {
       this.listOfPairs += element.prompt + ' - ' + element.answer + ',';
     });
@@ -60,8 +65,6 @@ export class WordAssociateInputComponent implements OnInit{
 
     this.inputElement = <HTMLInputElement>document.getElementById('userInputs');
     this.loadComponent();
-    // this.getWordsInputOne();
-    // myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   //Focus cursor in input box for each set of words
@@ -96,15 +99,15 @@ export class WordAssociateInputComponent implements OnInit{
   };
 
   loadComponent() {
-    if (this.counter < this.wordsInput.length) {
+    if (this.counter < this.numberOfWords) {
       this.inputElement!.disabled = false;
       this.inputElement!.value = '';
       this.errorMessage = '';
       this.correctMessage = '';
       this.inputElement!.focus();
 
-      this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
-      const addWordInput = this.wordsInput[this.currentAdIndex];
+      this.currentWordIndex = this.indexArray[this.counter];
+      const addWordInput = this.wordsInput[this.currentWordIndex];
       this.currentWord = addWordInput.prompt;
       this.correctWord = addWordInput.answer;
       
@@ -135,17 +138,12 @@ export class WordAssociateInputComponent implements OnInit{
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', correctWord: string, myuserInput: string) {
 
-    myuserInput = myuserInput.trim();
     console.log(AppModule.trainigTesting);
-
+    
     this.inputElement!.disabled = true;
-
-    // //creating a list w the values given by the user
-    // myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
-    this.myUserInputList += myuserInput + ",";
-
-    // //delay the action for 5 seconds
-
+    
+    this.answerArray[this.currentWordIndex] = myuserInput;
+    myuserInput = myuserInput.trim();
     
     if (correctWord.toLowerCase() === myuserInput.toLowerCase()) {
       // yoannes, checking time to print message if its evening
@@ -170,9 +168,9 @@ export class WordAssociateInputComponent implements OnInit{
       }
       setTimeout(() => {
         // Only progress if this is the last word
-      if (this.currentAdIndex +1 == this.wordsInput.length) {
+      if (this.counter == this.numberOfWords) {
         this.numberCorrectPairs = this.numCorrect                 //yoannes
-        this.percentage = (this.numCorrect * 100)/40              //yoannes
+        this.percentage = (this.numCorrect * 100)/this.numberOfWords              //yoannes
 
         if(AppModule.trainigTesting == "testing"){
           this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
@@ -220,7 +218,7 @@ export class WordAssociateInputComponent implements OnInit{
     else if (this.numCorrect >= 24) { 
       Swal.fire(
         {
-          text: "You answered " + this.percentage + " % out of 40 words, Test completed"
+          text: "You answered " + this.percentage + " % out of "+this.numberOfWords+" words, Test completed"
         }
       ).then( () => {
         this.router.navigate(['/pass-test']);
@@ -232,8 +230,14 @@ export class WordAssociateInputComponent implements OnInit{
   // FRunction that creates the .CSV file //yoannes
   createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
     /* Define the data */
-    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date',this.listOfPairs]
-    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, this.myUserInputList]];
+    let questionOrder  = '"';
+    this.indexArray.forEach(index => {
+      questionOrder += this.wordsInput[index].prompt+',';
+    });
+    questionOrder = questionOrder.replace(/,\s*$/, "");
+    questionOrder  += '"';
+    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date', 'Question Order',this.listOfPairs]
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, questionOrder, this.answerArray]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */
