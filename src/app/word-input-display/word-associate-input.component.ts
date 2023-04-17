@@ -142,10 +142,10 @@ export class WordAssociateInputComponent implements OnInit{
     
     this.inputElement!.disabled = true;
     
+    myuserInput = myuserInput.trim().toLowerCase();
     this.answerArray[this.currentWordIndex] = myuserInput;
-    myuserInput = myuserInput.trim();
     
-    if (correctWord.toLowerCase() === myuserInput.toLowerCase()) {
+    if (correctWord.toLowerCase() === myuserInput) {
       // yoannes, checking time to print message if its evening
       if (AppModule.trainigTesting == "training") {
         this.correctMessage = "Correct answer"
