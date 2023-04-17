@@ -7,6 +7,7 @@ import { WordDirective } from '../word.directive';
 import { Router } from '@angular/router';
 import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
+import { WordService } from '../word.service';
 
 
 const win: Window = window;
@@ -15,11 +16,10 @@ const win: Window = window;
   selector: 'app-word-associate-input',
   templateUrl: './word-associate-input.component.html',
 })
-export class WordAssociateInputComponent implements OnInit, WordComponent {
-  @Input() wordsInput: AddWord[] = [];
-  @Input() data: any;
-
-  myUserInputList: string =  ""; //yoannes
+export class WordAssociateInputComponent implements OnInit{
+  // @Input() wordsInput: AddWord[] = [];
+  // @Input() data: any;
+  wordsInput: any[] = [];
 
   correctWord: string = '';
   errorMessage: string = '';
@@ -32,13 +32,18 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   numberOfWords = 40;
   inputElement: HTMLInputElement | undefined;
 
-  current_date = new Date().toISOString(); 
-  listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
+  current_date = this.getISOStringWithTimezone(); 
+  // listOfPairs ="tower - bell,sea - tide,newspaper - interview,sonata - joy,banner - camp,tendency - increment,mother - child,insect - caterpillar,river - ship,coast - beach,gun - bullet,blacksmith - metal,home - room,building - hall,rain - flood,avenue - tree,decency - truth,decree - decision,diamond - hardness,result - effect,occupation - doctor,book - story,attack - operation,cat - soul,doll - cradle,episode - happiness,railroad - steam,kitchen - pot,countryside - swamp,musician - pianist,industry - factory,clothing - scarf,car - headlight,gale - wind,bouquet - blossom,bottle - toast,group - person,crisis - emergency,girl - engagement,harbor - crane"
+  listOfPairs = '';
+  indexArray: number[] = [];
+  answerArray: string[] = [];
+  // wordsInputToHeaderStr () {
+    
+  // }
 
+  constructor(private router: Router,private globalService: AppModule,private wordService: WordService){}
 
-  constructor(private router: Router,private globalService: AppModule){}
-
-  currentAdIndex = -1;
+  currentWordIndex = -1;
   counter = 0;
 
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
@@ -46,10 +51,20 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   interval: number | any;
 
   ngOnInit(): void {
+    this.wordsInput = this.wordService.getWordList(AppModule.listName);
+    this.numberOfWords = this.wordsInput.length
+    // TODO use this array to choose index of word-pair to present. 
+    // Also need to create an answers array, and fill that by index to have answers recorded in the original order. 
+    // Then update csv code to use the answers array, and to make a cell for storing the order presented to subject
+    this.indexArray = Array.from({length:this.numberOfWords},(value,index)=>index).sort(() => Math.random() - 0.5);
+    this.wordsInput.forEach(element => {
+      this.listOfPairs += element.prompt + ' - ' + element.answer + ',';
+    });
+    // Remove trailing comma
+    this.listOfPairs = this.listOfPairs.replace(/,\s*$/, "");
+
     this.inputElement = <HTMLInputElement>document.getElementById('userInputs');
     this.loadComponent();
-    // this.getWordsInputOne();
-    // myUserInputList += "  ,"; // yoannes. In case Enter key is nor pressed the input value will be empty
   }
 
   //Focus cursor in input box for each set of words
@@ -63,18 +78,38 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     this.focus_element.nativeElement.focus();
   }
 
+  // Time solution for iso formath with locale timezone 
+  // taken from https://www.30secondsofcode.org/js/s/to-iso-string-with-timezone/
+  pad (n: number) {
+    return `${Math.floor(Math.abs(n))}`.padStart(2, '0')
+  };
+  getISOStringWithTimezone () {
+    let date = new Date();
+    let tzOffset = -date.getTimezoneOffset();
+    let diff = tzOffset >= 0 ? '+' : '-';
+    let pad = this.pad;
+    return date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      'T' + pad(date.getHours()) +
+      ':' + pad(date.getMinutes()) +
+      ':' + pad(date.getSeconds()) +
+      diff + pad(tzOffset / 60) //+
+      // ':' + pad(tzOffset % 60); // Removing milliseconds upon request
+  };
+
   loadComponent() {
-    if (this.counter < this.wordsInput.length) {
+    if (this.counter < this.numberOfWords) {
       this.inputElement!.disabled = false;
       this.inputElement!.value = '';
       this.errorMessage = '';
       this.correctMessage = '';
       this.inputElement!.focus();
 
-      this.currentAdIndex = (this.currentAdIndex + 1) % this.wordsInput.length;
-      const addWordInput = this.wordsInput[this.currentAdIndex];
-      this.currentWord = addWordInput.data.listone;
-      this.correctWord = addWordInput.data.listonesec;
+      this.currentWordIndex = this.indexArray[this.counter];
+      const addWordInput = this.wordsInput[this.currentWordIndex];
+      this.currentWord = addWordInput.prompt;
+      this.correctWord = addWordInput.answer;
       
       // const viewContainerRef = this.wordHost.viewContainerRef;
       // viewContainerRef.clear();
@@ -89,7 +124,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
         if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
           this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
         }
-      }, 11000, this.currentWord);
+      }, 10000, this.currentWord);
     }
   }
   //set the interval to minutes 
@@ -101,31 +136,26 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
 
 
   //Funtion with condition for different scenarios
-  onEnter(fromDataList: string = '', myWord: string, myuserInput: string) {
+  onEnter(fromDataList: string = '', correctWord: string, myuserInput: string) {
 
-    myuserInput = myuserInput.trim();
     console.log(AppModule.trainigTesting);
-
-    this.inputElement!.disabled = true;
-
-    // //creating a list w the values given by the user
-    // myUserInputList = myUserInputList.replace(" ,","") //yoannes. Remuving the empty value predefined in case the Enter key were not pressed.
-    this.myUserInputList += myuserInput + ",";
-
-    // //delay the action for 5 seconds
-
     
-    if (myWord === myuserInput) {
+    this.inputElement!.disabled = true;
+    
+    myuserInput = myuserInput.trim().toLowerCase();
+    this.answerArray[this.currentWordIndex] = myuserInput;
+    
+    if (correctWord.toLowerCase() === myuserInput) {
       // yoannes, checking time to print message if its evening
       if (AppModule.trainigTesting == "training") {
         this.correctMessage = "Correct answer"
       }
       this.numCorrect++;
     }
-    else if (myuserInput != myWord) {
+    else /* if (myuserInput != correctWord) */ {
     //   // yoannes, checking time to print message if its
       if (AppModule.trainigTesting == "training") {
-        this.errorMessage = "The correct word is " + myWord; 
+        this.errorMessage = "The correct word is <b>" + correctWord+"</b>"; 
       }
       this.numError++;
     }
@@ -138,9 +168,9 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
       }
       setTimeout(() => {
         // Only progress if this is the last word
-      if (fromDataList == 'harbor') {
+      if (this.counter == this.numberOfWords) {
         this.numberCorrectPairs = this.numCorrect                 //yoannes
-        this.percentage = (this.numCorrect * 100)/40              //yoannes
+        this.percentage = (this.numCorrect * 100)/this.numberOfWords              //yoannes
 
         if(AppModule.trainigTesting == "testing"){
           this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
@@ -188,7 +218,7 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
     else if (this.numCorrect >= 24) { 
       Swal.fire(
         {
-          text: "You answered " + this.percentage + " % out of 40 words, Test completed"
+          text: "You answered " + this.percentage + " % out of "+this.numberOfWords+" words, Test completed"
         }
       ).then( () => {
         this.router.navigate(['/pass-test']);
@@ -200,8 +230,14 @@ export class WordAssociateInputComponent implements OnInit, WordComponent {
   // FRunction that creates the .CSV file //yoannes
   createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
     /* Define the data */
-    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date',this.listOfPairs]
-    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, this.myUserInputList]];
+    let questionOrder  = '"';
+    this.indexArray.forEach(index => {
+      questionOrder += this.wordsInput[index].prompt+',';
+    });
+    questionOrder = questionOrder.replace(/,\s*$/, "");
+    questionOrder  += '"';
+    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date', 'Question Order',this.listOfPairs]
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, questionOrder, this.answerArray]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */

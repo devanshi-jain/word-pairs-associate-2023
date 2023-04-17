@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { WordService } from '../word.service'; 
 import { WordDirective } from '../word.directive';
 import { AddWord } from '../add-word';
 import { WordComponent } from '../word.component';
@@ -11,7 +12,7 @@ import { AppModule } from '../app.module'; // yoannes
   <div>
   <ng-template wordHost></ng-template>
   <div class="next_btn_wrap">
-    <button class="next_btn" 
+    <button class="next_btn next_btn_hides" 
     [disabled]="nextClick" 
     [routerLink]="['/task-message']" href="">Next</button>
 </div>
@@ -19,13 +20,13 @@ import { AppModule } from '../app.module'; // yoannes
   `
 })
 export class WordAssociateComponent implements OnInit, OnDestroy {
-  @Input() words: AddWord[] = [];
-
+  // @Input() words: AddWord[] = [];
+  words: AddWord[] = [];
   nextClick = true;
 
   //constructor() { }
   //yoannes Inject the class in the components where you want to access the global variable:
-  constructor(private globalService: AppModule) {}
+  constructor(private globalService: AppModule,private wordService: WordService) {}
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
@@ -39,6 +40,8 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
   interval: number | undefined;
 
   ngOnInit(): void {
+
+    this.words = this.wordService.getWords(AppModule.listName);
     this.loadComponent();
     this.getWordsOne();
   }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WordListInputOneComponent } from './word-input-display/word-list-input-one.component';
 
 @Component({
   selector: 'app-pass-test',
