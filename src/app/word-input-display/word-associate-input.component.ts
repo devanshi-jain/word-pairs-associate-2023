@@ -173,7 +173,7 @@ export class WordAssociateInputComponent implements OnInit{
         this.percentage = (this.numCorrect * 100)/this.numberOfWords              //yoannes
 
         if(AppModule.trainigTesting == "testing"){
-          this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+          this.createCSVFile();  
           this.router.navigate(['/pass-test']);
         } else {
           this.popSweetAlert(fromDataList);
@@ -204,10 +204,10 @@ export class WordAssociateInputComponent implements OnInit{
           this.router.navigate(['/task-message']);
           // this.router.navigate(['/input-one']);
           // this.router.navigate(['/app-lits-one']);
-          this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+          this.createCSVFile();  
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           //Asking the user to enter the Study ID to generate the file
-          this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+          this.createCSVFile();  
             
           //Go to the home page
           this.router.navigate(['/pass-test']);
@@ -223,12 +223,17 @@ export class WordAssociateInputComponent implements OnInit{
       ).then( () => {
         this.router.navigate(['/pass-test']);
       });
-      this.createCSVFile(AppModule.globalVariable, this.numberOfWords ,this.numberCorrectPairs ,this.percentage , this.current_date);  
+      this.createCSVFile();  
     }
   }
 
   // FRunction that creates the .CSV file //yoannes
-  createCSVFile(studyID: string, numberOfWords: number ,numberCorrectPairs: number ,percentage: number , current_date: string) {
+  createCSVFile() {
+    let studyID = AppModule.globalVariable;
+    let numberOfWords = this.numberOfWords;
+    let numberCorrectPairs: number = this.numberCorrectPairs;
+    let percentage: number = this.percentage;
+    let current_date: string = this.current_date;
     /* Define the data */
     let questionOrder  = '"';
     this.indexArray.forEach(index => {
@@ -236,8 +241,8 @@ export class WordAssociateInputComponent implements OnInit{
     });
     questionOrder = questionOrder.replace(/,\s*$/, "");
     questionOrder  += '"';
-    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Date', 'Question Order',this.listOfPairs]
-    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , current_date, questionOrder, this.answerArray]];
+    const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Training/Testing', 'Date', 'Question Order',this.listOfPairs]
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , AppModule.trainigTesting, current_date, questionOrder, this.answerArray]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */
