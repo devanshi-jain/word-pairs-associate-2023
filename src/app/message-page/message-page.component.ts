@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { AppModule } from '../app.module'; // yoannes
 import Swal from 'sweetalert2'; // yoannes
 import { ActivatedRoute, Router } from '@angular/router'; // yoannes using route to navigate between pages without affecting my global variables values
@@ -29,6 +29,11 @@ export class MessagePageComponent implements OnInit {
     this.inputStudyId();  //yoannes
     this.listName = this.route.snapshot.paramMap.get('id');
     AppModule.listName = this.listName;
+  }
+
+  @HostListener('window:keyup.space',['$event'])
+  navigateOnSpacebar(event: KeyboardEvent) {
+    this.router.navigate(['word-associate',this.listName]);
   }
   
   

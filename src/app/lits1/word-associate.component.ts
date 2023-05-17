@@ -1,4 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { WordService } from '../word.service'; 
 import { WordDirective } from '../word.directive';
 import { AddWord } from '../add-word';
@@ -26,10 +27,18 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
 
   //constructor() { }
   //yoannes Inject the class in the components where you want to access the global variable:
-  constructor(private globalService: AppModule,private wordService: WordService) {}
+  constructor(private globalService: AppModule,private wordService: WordService, private router: Router) {}
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
+  }
+
+  @HostListener('window:keyup.space',['$event'])
+  navigateOnSpacebar(event: KeyboardEvent) {
+    // Only enable space navigation if all words have been displayed
+    if(this.nextClick == false) {
+      this.router.navigate(['task-message']);
+    }
   }
   // yoannes end
 

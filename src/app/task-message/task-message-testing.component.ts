@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HostListener } from '@angular/core';
-//import { InputTaskComponent } from '../input-task/input-task.component';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'task-message-testing',
@@ -8,15 +7,14 @@ import { HostListener } from '@angular/core';
 })
 export class TaskMessageTestingComponent implements OnInit {
 
- /*@HostListener('window:keydown.space', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    window.location.href="/word-pairs-associate/input-one", true;
-    
-  }*/ //This is not working properly for space bar 
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('window:keyup.space',['$event'])
+  navigateOnSpacebar(event: KeyboardEvent) {
+    this.router.navigateByUrl('/input');
   }
   
 }
