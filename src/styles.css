@@ -75,6 +75,25 @@ hr {
   margin-top: 180px;
 }
 
+#mainpage-wrapper {
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+}
+
+#mainpage-content{
+  flex:1;
+}
+
+#legal {
+  font-size: small;
+}
+
+#license {
+  display:flex;
+  gap: 1em;
+}
+
 .continue_btn{
   font-weight: 700;
   font-size: 0.875rem;
