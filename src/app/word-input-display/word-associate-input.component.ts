@@ -190,7 +190,7 @@ export class WordAssociateInputComponent implements OnInit{
       var thisComp = this;
       Swal.fire(
         {
-          text: "You answered " + this.percentage + " % of the questions correctly. Please try up to 3 times in total to reach at least 60% of correctly answered questions",
+          text: "You answered " + this.percentage + " % of the questions correctly. Please try again until you reach at least 60% of correctly answered questions.",
           showCancelButton: true,
           cancelButtonText: "End Test",
           confirmButtonColor: '#3085d6',

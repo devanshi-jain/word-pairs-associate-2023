@@ -229,13 +229,15 @@ button:hover {
   opacity: 0;
 }
 
-
+#input-prompt-row{
+  margin-bottom: 1em;
+}
 .form-match input[type="text"]{
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
   display:inline-flex;
   /*display: inline;*/     /* for IE7*/
   zoom:1;              /* for IE7*/
-  vertical-align:middle;
+  /* vertical-align:middle; */
   margin-left:20px;
   width: fit-content;
   font-size: xxx-large;
