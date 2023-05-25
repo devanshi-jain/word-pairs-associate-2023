@@ -11,13 +11,14 @@ import { AppModule } from '../app.module'; // yoannes
   selector: 'app-word-associate',
   template: `
   <div>
-  <ng-template wordHost></ng-template>
-  <div class="next_btn_wrap">
-    <button class="next_btn next_btn_hides" 
-    [disabled]="nextClick" 
-    [routerLink]="['/task-message']" href="">Next</button>
-</div>
-</div>
+    <ng-template wordHost></ng-template>
+    <div class="next_btn_wrap_absolute" [class.hidden]='nextClick'>
+      <!-- <p><strong>Press the SPACE bar to continue</strong></p> -->
+      <button class="next_btn next_btn_hides" 
+      [disabled]="nextClick" 
+      [routerLink]="['/task-message']" href="">Press the SPACE bar to continue</button>
+    </div>
+  </div>
   `
 })
 export class WordAssociateComponent implements OnInit, OnDestroy {

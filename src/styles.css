@@ -85,8 +85,20 @@ hr {
   flex:1;
 }
 
-#legal {
+#legal *{
   font-size: small;
+  text-align: initial;
+}
+#legal p{
+  font-size: small;
+  display: revert;
+  margin-block-start: revert;
+  margin-block-end: revert;
+  margin-inline-start: revert;
+  margin-inline-end: revert;
+  margin-bottom: revert;
+  text-align: revert;
+  margin-top: revert;
 }
 
 #license {
@@ -166,43 +178,25 @@ p{
   font-family: Open Sans,Tahoma,Geneva,sans-serif;
   margin-left: -25px;
   box-sizing: border-box;
-    min-height: 2.1875rem;
-    /* height: 1.5rem; */
-    border: 0.0625rem;
-    color: #fff;
-    /* min-height: 0px; */
-    background-color: #227ab9;
-    border-color: transparent;
-    display: inline-block;
-    padding: 6px 12px;
-    /* padding: 0px 12px; */
-    font-weight: 700;
-    line-height: 16px;
-    white-space: nowrap;
-    background-image: none;
-    border: 1px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #fff;
-    font-family: Open Sans, Tahoma, Geneva, sans-serif;
-    text-align: center;
-    min-height: 35px;
-    /* min-height: 0px; */
-    /* height: 24px; */
-    cursor: pointer;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: #227AB9;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-color: transparent;
-    position: absolute;
-    top: 55%;
-    transform: translate(-50%, -50%);
+  min-height: 2.1875rem;
+  color: #fff;
+  background-color: #227ab9;
+  border-color: transparent;
+  display: inline-block;
+  padding: 6px 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  background-image: none;
+  border: 1px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  appearance: none;
+  -webkit-appearance: none;
+  text-transform: uppercase;
 }
 /*.next_btn :hover {
   text-decoration: underline;
@@ -210,6 +204,13 @@ p{
 
 .next_btn_wrap{
   text-align: center;
+}
+.next_btn_wrap_absolute{
+  text-align: center;
+  position: absolute;
+  top: 55%;
+  left:50%;
+  transform: translate(-50%, -50%);
 }
 .next_btn_fix{
   text-align: center;
