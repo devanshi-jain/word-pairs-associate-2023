@@ -21,7 +21,7 @@ If you would like to use this app as is, you can simply use our existing deploym
 This app is built using Angular. 
 Word pair lists are defined in src/app/word.service.ts
 
-## Legal
+## Disclaimer
 
 This app has been designed and tested for use with a Google Chrome browser on a laptop (not ipad). This site/app may be changed without notice. 
 
