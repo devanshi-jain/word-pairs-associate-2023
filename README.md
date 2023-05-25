@@ -1,5 +1,7 @@
-# Word Pairs Associate Study
+# San Diego Verbal Paired-Associates (SD-VPA) Task
 <!-- Intro section -->
+San Diego Verbal Paired-Associates (SD-VPA) Task by Chris Schmickl, Atul Malhotra, Ina Djonlagic, Tyler Bath is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
 This app represents a continued development from: Djonlagic IE, Guo M, Igue M, Kishore D, Stickgold R, Malhotra A. CPAP Restores Declarative Memory Deficit in Obstructive Sleep Apnea. AJRCCM 2021 May 1;203(9):1188-1190 https://doi.org/10.1164/rccm.202011-4253LE
 
 In brief, this app is designed to test sleep-dependent memory via semantically associated word pairs. There are two modes, training and testing. In our use case, participants complete the training mode in the evening, and the testing mode in the morning after a nights sleep. 
