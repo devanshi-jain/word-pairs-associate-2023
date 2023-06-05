@@ -1,20 +1,22 @@
 <form class="form-match">
   <h6>Please press ENTER after you type your word</h6>
-  <label class="message">{{currentWord}} - </label>
-  <!-- <input disable-on-enter id="userInputs"  -->
-  <input #userInputs disable-on-enter id="userInputs" 
-          type="text" spellcheck=true 
-          name="userInputs"
+  <div id="input-prompt-row">
+    <label class="message">{{currentWord}} - </label>
+    <!-- <input disable-on-enter id="userInputs"  -->
+    <input #userInputs disable-on-enter id="userInputs" 
+            type="text" spellcheck=true 
+            name="userInputs"
 
-          autocomplete="off"
-          (keyup.enter)="onEnter(currentWord,correctWord,userInputs.value)" 
-          (click)="$event.stopPropagation()"
-          required
-          >
-   <span class="outputMessage" style="color: red; text-align: center;font-size: x-large;">
+            autocomplete="off"
+            (keyup.enter)="onEnter(currentWord,correctWord,userInputs.value)" 
+            (click)="$event.stopPropagation()"
+            required
+            >
+  </div>
+   <span class="outputMessage" style="color: red; text-align: center;">
     <div [innerHtml]="errorMessage"></div>
    </span> 
-   <span class="correctMessage" style="color: blue; text-align: center;font-size: x-large;">
+   <span class="correctMessage" style="color: blue; text-align: center;">
     <div>{{correctMessage}}</div>
    </span>
 </form>
