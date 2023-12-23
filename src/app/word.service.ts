@@ -98,8 +98,8 @@ export class WordService {
     { prompt: 'hiss', answer: 'cobra' },
     { prompt: 'cluck', answer: 'rooster' },
     { prompt: 'ribbit', answer: 'tadpole' }
-  ]
-  
+    ];
+
     this.lists['three'] = [
       { prompt: 'fire', answer: 'smoke' },
       { prompt: 'animal', answer: 'fox' },
@@ -141,7 +141,7 @@ export class WordService {
       { prompt: 'theory', answer: 'concept' },
       { prompt: 'authority', answer: 'state' },
       { prompt: 'fir', answer: 'needle' }
-    ]
+    ];
 
     this.lists['five'] = [
       { prompt: 'power', answer: 'ruler' },
