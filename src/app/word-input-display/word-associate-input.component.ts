@@ -118,27 +118,62 @@ export class WordAssociateInputComponent implements OnInit{
       // componentRef.instance.data = addWordInput.data;
       //console.log("Testing: ", componentRef.instance.data );
       this.counter++;
-      //console.log("Counter in alert: ", this.counter);
-      setTimeout((expectedCurrentWord) => {
-        // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
-        if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
-          this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
-        }
-      }, 10000, this.currentWord);
-    }
-  }
+  //     //console.log("Counter in alert: ", this.counter);
+  //     setTimeout((expectedCurrentWord) => {
+  //       // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
+  //       if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
+  //         this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
+  //       }
+  //     }, 10000, this.currentWord);
+  //   }
+  // }
   //set the interval to minutes 
   // getWordsInputOne() {
   //   this.interval = window.setInterval(() => {
   //     this.loadComponent();
   //   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
   // }
+      //console.log("Counter in alert: ", this.counter);
+      setTimeout((expectedCurrentWord) => {
+        handleTimeout(expectedCurrentWord);
+      }, 10000, this.currentWord);
+    }
+  }
+//set the interval to minutes 
+//   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
+// }
+
+  handleTimeout(expectedCurrentWord) {
+    // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
+    if (this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false) {
+      // Check if more than 2 seconds have passed since the last keypress
+      if ((Date.now() - lastTypedTime) / 1000 > 2) {
+        // If yes, set another timeout for 2000 milliseconds (2 seconds) to call handleTimeout again
+        setTimeout((expectedCurrentWord) => {
+          handleTimeout(expectedCurrentWord);
+        }, 2000, this.currentWord);
+      } else {
+        // If less than or equal to 2 seconds have passed since the last keypress, call onEnter
+        this.onEnter(this.currentWord, this.correctWord, this.inputElement!.value);
+      }
+    }
+  }
+
+
+  onKeyUp(event) {
+    // Update the lastTypedTime variable with the current timestamp whenever a key is pressed
+    this.lastTypedTime = Date.now();
+    if (event.key === 'Enter') {
+      // If the pressed key is 'Enter', call onEnter immediately
+      this.onEnter(this.currentWord, this.correctWord, this.inputElement!.value);
+    }
+  }
 
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', correctWord: string, myuserInput: string) {
 
-    console.log(AppModule.trainigTesting);
+    console.log(AppModule.trainingTesting);
     
     this.inputElement!.disabled = true;
     
@@ -147,14 +182,14 @@ export class WordAssociateInputComponent implements OnInit{
     
     if (correctWord.toLowerCase() === myuserInput) {
       // yoannes, checking time to print message if its evening
-      if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainingTesting == "training") {
         this.correctMessage = "Correct answer"
       }
       this.numCorrect++;
     }
     else /* if (myuserInput != correctWord) */ {
     //   // yoannes, checking time to print message if its
-      if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainingTesting == "training") {
         this.errorMessage = "The correct word is <b>" + correctWord+"</b>"; 
       }
       this.numError++;
@@ -163,7 +198,7 @@ export class WordAssociateInputComponent implements OnInit{
     
     //Wait then move to next word. 
     let loadTime = 1000; // 1 second if testing
-      if (AppModule.trainigTesting == "training") {
+      if (AppModule.trainingTesting == "training") {
         loadTime = 5000; // 5 seconds if training
       }
       setTimeout(() => {
@@ -172,7 +207,7 @@ export class WordAssociateInputComponent implements OnInit{
         this.numberCorrectPairs = this.numCorrect                 //yoannes
         this.percentage = (this.numCorrect * 100)/this.numberOfWords              //yoannes
 
-        if(AppModule.trainigTesting == "testing"){
+        if(AppModule.trainingTesting == "testing"){
           this.createCSVFile();  
           this.router.navigate(['/pass-test']);
         } else {
@@ -242,7 +277,7 @@ export class WordAssociateInputComponent implements OnInit{
     questionOrder = questionOrder.replace(/,\s*$/, "");
     questionOrder  += '"';
     const data = [['Study ID', 'Number of Words', 'Number of Correct Pairs', '% of Correct Pairs', 'Training/Testing', 'Date', 'Question Order',this.listOfPairs]
-    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , AppModule.trainigTesting, current_date, questionOrder, this.answerArray]];
+    ,[studyID, numberOfWords ,numberCorrectPairs ,percentage +"%" , AppModule.trainingTesting, current_date, questionOrder, this.answerArray]];
     /* Convert the data to a CSV string */
     const csvContent = data.map(row => row.join(',')).join('\n');
     /* Create a Blob object containing the CSV string */
