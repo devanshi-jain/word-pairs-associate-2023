@@ -21,7 +21,7 @@ export class MessagePageComponent implements OnInit {
 
   accessGlobalVariable() {
     console.log(AppModule.globalVariable);
-    console.log(AppModule.trainigTesting);
+    console.log(AppModule.trainingTesting);
   }
   // yoannes end
 
@@ -86,12 +86,12 @@ export class MessagePageComponent implements OnInit {
       ).then((result) => {
         if (result.value) {
             // do nothing stay in testing evening
-            AppModule.trainigTesting = "training";
+            AppModule.trainingTesting = "training";
             this.hideMessage = false;
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           
           //Go to the task page
-          AppModule.trainigTesting = "testing";
+          AppModule.trainingTesting = "testing";
           this.router.navigate(['/task-message-testing']);
         } 
       });

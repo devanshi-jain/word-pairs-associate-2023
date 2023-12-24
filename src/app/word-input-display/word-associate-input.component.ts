@@ -20,7 +20,6 @@ export class WordAssociateInputComponent implements OnInit{
   // @Input() wordsInput: AddWord[] = [];
   // @Input() data: any;
   wordsInput: any[] = [];
-
   correctWord: string = '';
   errorMessage: string = '';
   correctMessage: string = '';
@@ -45,9 +44,8 @@ export class WordAssociateInputComponent implements OnInit{
 
   currentWordIndex = -1;
   counter = 0;
-
   @ViewChild(WordDirective, { static: true }) wordHost!: WordDirective;
-
+  lastTypedTime = 0;
   interval: number | any;
 
   ngOnInit(): void {
@@ -118,57 +116,63 @@ export class WordAssociateInputComponent implements OnInit{
       // componentRef.instance.data = addWordInput.data;
       //console.log("Testing: ", componentRef.instance.data );
       this.counter++;
-  //     //console.log("Counter in alert: ", this.counter);
-  //     setTimeout((expectedCurrentWord) => {
-  //       // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
-  //       if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false){
-  //         this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
-  //       }
-  //     }, 10000, this.currentWord);
-  //   }
-  // }
+      //console.log("Counter in alert: ", this.counter);
+      setTimeout((expectedCurrentWord) => {
+        this.handleTimeout(expectedCurrentWord);
+       }, 10000, this.currentWord);
+    }
+  }
   //set the interval to minutes 
   // getWordsInputOne() {
   //   this.interval = window.setInterval(() => {
   //     this.loadComponent();
   //   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
   // }
-      //console.log("Counter in alert: ", this.counter);
-      setTimeout((expectedCurrentWord) => {
-        handleTimeout(expectedCurrentWord);
-      }, 10000, this.currentWord);
-    }
-  }
-//set the interval to minutes 
-//   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
-// }
 
-  handleTimeout(expectedCurrentWord) {
-    // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
+  // handleTimeout (expectedCurrentWord: string) {
+  //    // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
+  //   if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false) {
+  //     if( (Date.now() - this.lastTypedTime)/1000 > 2){
+  //       setTimeout((expectedCurrentWord) => {
+  //         this.handleTimeout(expectedCurrentWord);
+  //        }, 2000, this.currentWord);
+  //     } else {
+  //       this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
+  //     }
+  //   }
+
+  // }
+
+  handleTimeout(expectedCurrentWord: string) {
+    const typingTimeout = 1000; // 2 seconds
+  
+    // If the list has moved to the next word or an answer has been submitted, do nothing.
     if (this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false) {
-      // Check if more than 2 seconds have passed since the last keypress
-      if ((Date.now() - lastTypedTime) / 1000 > 2) {
-        // If yes, set another timeout for 2000 milliseconds (2 seconds) to call handleTimeout again
-        setTimeout((expectedCurrentWord) => {
-          handleTimeout(expectedCurrentWord);
-        }, 2000, this.currentWord);
+      // Check if the user is actively typing
+      const isTyping = (Date.now() - this.lastTypedTime) / 1000 <= 2;
+  
+      if (isTyping) {
+        // If actively typing, set a timeout to check again after 2 seconds
+        setTimeout(() => {
+          this.handleTimeout(expectedCurrentWord);
+        }, typingTimeout);
       } else {
-        // If less than or equal to 2 seconds have passed since the last keypress, call onEnter
-        this.onEnter(this.currentWord, this.correctWord, this.inputElement!.value);
+        // If not actively typing, submit the answer
+        setTimeout(() => {
+          this.onEnter(this.currentWord, this.correctWord, this.inputElement!.value);
+        }, 0); // Submit asynchronously to avoid blocking the UI
       }
     }
   }
+  
 
-
-  onKeyUp(event) {
-    // Update the lastTypedTime variable with the current timestamp whenever a key is pressed
+  // Handle keypress events. This will enabe tracking if the user is currently typing. 
+  onKeyUp(event: KeyboardEvent){
     this.lastTypedTime = Date.now();
-    if (event.key === 'Enter') {
-      // If the pressed key is 'Enter', call onEnter immediately
-      this.onEnter(this.currentWord, this.correctWord, this.inputElement!.value);
+    if(event.key === 'Enter'){
+      this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value)
     }
   }
-
 
   //Funtion with condition for different scenarios
   onEnter(fromDataList: string = '', correctWord: string, myuserInput: string) {
@@ -297,4 +301,3 @@ export class WordAssociateInputComponent implements OnInit{
   }
   
 }
-
