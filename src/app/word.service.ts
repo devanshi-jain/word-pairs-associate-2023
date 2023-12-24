@@ -195,7 +195,6 @@ export class WordService {
       { prompt: 'Gb minor 5th', answer: 'Db'}
     ];
       
-
     this.lists['five'] = [
       { prompt: 'power', answer: 'ruler' },
       { prompt: 'butterfly', answer: 'bloom' },
