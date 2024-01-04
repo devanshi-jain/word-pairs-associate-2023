@@ -57,49 +57,6 @@ export class WordService {
       { prompt: 'harbor', answer: 'crane' }
     ];
 
-    // this.lists['devanshi'] = [
-    // { prompt: 'roar', answer: 'lion' },
-    // { prompt: 'bark', answer: 'dog' },
-    // { prompt: 'meow', answer: 'cat' },
-    // { prompt: 'moo', answer: 'cow' },
-    // { prompt: 'neigh', answer: 'horse' },
-    // { prompt: 'oink', answer: 'pig' },
-    // { prompt: 'quack', answer: 'duck' },
-    // { prompt: 'hoot', answer: 'owl' },
-    // { prompt: 'chirp', answer: 'sparrow' },
-    // { prompt: 'howl', answer: 'wolf' },
-    // { prompt: 'buzz', answer: 'bee' },
-    // { prompt: 'ribbit', answer: 'frog' },
-    // { prompt: 'baa', answer: 'sheep' },
-    // { prompt: 'hiss', answer: 'snake' },
-    // { prompt: 'gobble', answer: 'turkey' },
-    // { prompt: 'bleat', answer: 'goat' },
-    // { prompt: 'caw', answer: 'crow' },
-    // { prompt: 'bray', answer: 'donkey' },
-    // { prompt: 'cluck', answer: 'chicken' },
-    // { prompt: 'chirp', answer: 'cricket' },
-    // { prompt: 'squeak', answer: 'mouse' },
-    // { prompt: 'trumpet', answer: 'elephant' },
-    // { prompt: 'growl', answer: 'bear' },
-    // { prompt: 'moo', answer: 'bull' },
-    // { prompt: 'gobble', answer: 'goose' },
-    // { prompt: 'bellow', answer: 'deer' },
-    // { prompt: 'squeal', answer: 'piglet' },
-    // { prompt: 'purr', answer: 'kitten' },
-    // { prompt: 'chatter', answer: 'squirrel' },
-    // { prompt: 'whinny', answer: 'foal' },
-    // { prompt: 'squawk', answer: 'parrot' },
-    // { prompt: 'bleat', answer: 'lamb' },
-    // { prompt: 'croak', answer: 'toad' },
-    // { prompt: 'coo', answer: 'dove' },
-    // { prompt: 'snort', answer: 'piggy' },
-    // { prompt: 'twitter', answer: 'canary' },
-    // { prompt: 'screech', answer: 'hawk' },
-    // { prompt: 'hiss', answer: 'cobra' },
-    // { prompt: 'cluck', answer: 'rooster' },
-    // { prompt: 'ribbit', answer: 'tadpole' }
-    // ];
-
     this.lists['three'] = [
       { prompt: 'fire', answer: 'smoke' },
       { prompt: 'animal', answer: 'fox' },
@@ -280,8 +237,6 @@ export class WordService {
       { prompt: 'play', answer: 'incident' },
       { prompt: 'reptile', answer: 'oats' }
     ];
-    
-
   }
 
   getWordList(listName : any) {
