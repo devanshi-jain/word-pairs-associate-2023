@@ -266,7 +266,7 @@ export class WordAssociateInputComponent implements OnInit{
     }
   }
 
-  // FRunction that creates the .CSV file //yoannes
+  // Function that creates the .CSV file //yoannes
   createCSVFile() {
     let studyID = AppModule.globalVariable;
     let numberOfWords = this.numberOfWords;
