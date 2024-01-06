@@ -7,7 +7,7 @@ import { TaskMessageTestingComponent } from './task-message/task-message-testing
 import { WordAssociateInputComponent } from './word-input-display/word-associate-input.component';
 import { FailTestComponent } from './fail-test.component';
 import { PassTestComponent } from './pass-test.component';
-import { WordAssociateComponent } from './lits1/word-associate.component';
+import { WordAssociateComponent } from './lists/word-associate.component';
 
 const routes: Routes = [
 

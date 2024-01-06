@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { WordAssociateComponent } from './lits1/word-associate.component'; 
+import { WordAssociateComponent } from './lists/word-associate.component'; 
 import { MessagePageComponent } from './message-page/message-page.component';
 import { TaskMessageComponent } from './task-message/task-message.component';
 import { TaskMessageTestingComponent } from './task-message/task-message-testing.component';
