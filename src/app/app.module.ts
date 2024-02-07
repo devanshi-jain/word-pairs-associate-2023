@@ -17,7 +17,8 @@ import { FailTestComponent } from './fail-test.component';
 import { PassTestComponent } from './pass-test.component';
 
 //yoannes , a static property needs to be created to be used as global variable
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; 
 
 @Injectable({ 
   providedIn: 'root'
@@ -45,7 +46,8 @@ import { Injectable } from '@angular/core';
     WordAssociateInputComponent,
     DisableOnEnterDirective,
     FailTestComponent,
-    PassTestComponent
+    PassTestComponent,
+    PageNotFoundComponent
   ],
   bootstrap: [ AppComponent ]
 })
