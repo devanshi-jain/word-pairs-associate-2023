@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh; /* Ensures the container takes up the full viewport height */
+    height: 90vh; 
   }
   
   .error-header {
