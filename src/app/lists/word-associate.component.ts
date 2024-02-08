@@ -53,6 +53,7 @@ export class WordAssociateComponent implements OnInit, OnDestroy {
     const shuffledWords = this.wordService.getWords(AppModule.listName);
     this.words = this.shuffleArray(shuffledWords);
     // this.words = this.wordService.getWords(AppModule.listName);
+    //Hoping this comment will help republish the site.
     this.loadComponent();
     this.getWordsOne();
   }
